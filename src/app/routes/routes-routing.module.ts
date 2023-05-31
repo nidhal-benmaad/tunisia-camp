@@ -11,10 +11,13 @@ import { Error403Component } from './sessions/403.component';
 import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
 import { authGuard } from '@core/authentication';
+import { ClientLayoutComponent } from '@theme/client-layout/client-layout.component';
+import { HomeComponent } from './home/home.component';
+import { ReservationsComponent } from './admin-views/reservations/reservations.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'admin',
     component: AdminLayoutComponent,
     canActivate: [authGuard],
     canActivateChild: [authGuard],
@@ -24,6 +27,10 @@ const routes: Routes = [
       { path: '403', component: Error403Component },
       { path: '404', component: Error404Component },
       { path: '500', component: Error500Component },
+      {
+        path: 'reservations',
+        component: ReservationsComponent,
+      },
       {
         path: 'design',
         loadChildren: () => import('./design/design.module').then(m => m.DesignModule),
@@ -57,6 +64,16 @@ const routes: Routes = [
         path: 'utilities',
         loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule),
       },
+    ],
+  },
+  {
+    path: '',
+    component: ClientLayoutComponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
     ],
   },
   {

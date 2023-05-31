@@ -1,7 +1,6 @@
 {
-  "menu": [
-    {
-      "route": "dashboard",
+  "menu": [{
+      "route": "admin/dashboard",
       "name": "dashboard",
       "type": "link",
       "icon": "dashboard",
@@ -15,8 +14,7 @@
       "name": "sessions",
       "type": "sub",
       "icon": "question_answer",
-      "children": [
-        {
+      "children": [{
           "route": "403",
           "name": "403",
           "type": "link"

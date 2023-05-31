@@ -24,6 +24,7 @@ import { TranslateComponent } from './widgets/translate.component';
 import { UserComponent } from './widgets/user.component';
 
 import { CustomizerComponent } from './customizer/customizer.component';
+import { ClientLayoutComponent } from './client-layout/client-layout.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CustomizerComponent } from './customizer/customizer.component';
     TranslateComponent,
     UserComponent,
     CustomizerComponent,
+    ClientLayoutComponent,
   ],
   imports: [SharedModule],
 })

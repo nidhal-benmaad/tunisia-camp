@@ -8,6 +8,8 @@ import { RegisterComponent } from './sessions/register/register.component';
 import { Error403Component } from './sessions/403.component';
 import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
+import { HomeComponent } from './home/home.component';
+import { ReservationsComponent } from './admin-views/reservations/reservations.component';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -21,6 +23,6 @@ const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, HomeComponent, ReservationsComponent],
 })
 export class RoutesModule {}

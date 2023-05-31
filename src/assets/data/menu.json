@@ -1,7 +1,6 @@
 {
-  "menu": [
-    {
-      "route": "dashboard",
+  "menu": [{
+      "route": "admin/dashboard",
       "name": "dashboard",
       "type": "link",
       "icon": "dashboard",
@@ -11,12 +10,17 @@
       }
     },
     {
-      "route": "design",
+      "route": "admin/reservations",
+      "name": "reservations",
+      "type": "link",
+      "icon": "credit_card"
+    },
+    {
+      "route": "admin/design",
       "name": "design",
       "type": "sub",
       "icon": "color_lens",
-      "children": [
-        {
+      "children": [{
           "route": "colors",
           "name": "colors",
           "type": "link"
@@ -35,17 +39,15 @@
       }
     },
     {
-      "route": "material",
+      "route": "admin/material",
       "name": "material",
       "type": "sub",
       "icon": "favorite",
-      "children": [
-        {
+      "children": [{
           "route": "",
           "name": "form-controls",
           "type": "sub",
-          "children": [
-            {
+          "children": [{
               "route": "autocomplete",
               "name": "autocomplete",
               "type": "link"
@@ -96,8 +98,7 @@
           "route": "",
           "name": "navigation",
           "type": "sub",
-          "children": [
-            {
+          "children": [{
               "route": "menu",
               "name": "menu",
               "type": "link"
@@ -118,8 +119,7 @@
           "route": "",
           "name": "layout",
           "type": "sub",
-          "children": [
-            {
+          "children": [{
               "route": "card",
               "name": "card",
               "type": "link"
@@ -165,8 +165,7 @@
           "route": "",
           "name": "buttons-indicators",
           "type": "sub",
-          "children": [
-            {
+          "children": [{
               "route": "button",
               "name": "button",
               "type": "link"
@@ -212,8 +211,7 @@
           "route": "",
           "name": "popups-modals",
           "type": "sub",
-          "children": [
-            {
+          "children": [{
               "route": "bottom-sheet",
               "name": "bottom-sheet",
               "type": "link"
@@ -239,8 +237,7 @@
           "route": "data-table",
           "name": "data-table",
           "type": "sub",
-          "children": [
-            {
+          "children": [{
               "route": "paginator",
               "name": "paginator",
               "type": "link"
@@ -266,12 +263,11 @@
       }
     },
     {
-      "route": "permissions",
+      "route": "admin/permissions",
       "name": "permissions",
       "type": "sub",
       "icon": "lock",
-      "children": [
-        {
+      "children": [{
           "route": "role-switching",
           "name": "role-switching",
           "type": "link"
@@ -295,25 +291,22 @@
       ]
     },
     {
-      "route": "media",
+      "route": "admin/media",
       "name": "media",
       "type": "sub",
       "icon": "image",
-      "children": [
-        {
-          "route": "gallery",
-          "name": "gallery",
-          "type": "link"
-        }
-      ]
+      "children": [{
+        "route": "gallery",
+        "name": "gallery",
+        "type": "link"
+      }]
     },
     {
-      "route": "forms",
+      "route": "admin/forms",
       "name": "forms",
       "type": "sub",
       "icon": "description",
-      "children": [
-        {
+      "children": [{
           "route": "elements",
           "name": "form-elements",
           "type": "link"
@@ -339,12 +332,11 @@
       }
     },
     {
-      "route": "tables",
+      "route": "admin/tables",
       "name": "tables",
       "type": "sub",
       "icon": "format_line_spacing",
-      "children": [
-        {
+      "children": [{
           "route": "kitchen-sink",
           "name": "kitchen-sink",
           "type": "link"
@@ -360,12 +352,11 @@
       }
     },
     {
-      "route": "profile",
+      "route": "admin/profile",
       "name": "profile",
       "type": "sub",
       "icon": "person",
-      "children": [
-        {
+      "children": [{
           "route": "overview",
           "name": "overview",
           "type": "link"
@@ -391,8 +382,7 @@
       "name": "sessions",
       "type": "sub",
       "icon": "question_answer",
-      "children": [
-        {
+      "children": [{
           "route": "403",
           "name": "403",
           "type": "link"
@@ -413,7 +403,7 @@
       }
     },
     {
-      "route": "utilities",
+      "route": "admin/utilities",
       "name": "utilities",
       "type": "sub",
       "icon": "all_inbox",
@@ -421,8 +411,7 @@
         "color": "indigo-500",
         "value": "new"
       },
-      "children": [
-        {
+      "children": [{
           "route": "css-grid",
           "name": "css-grid",
           "type": "link"
@@ -435,34 +424,28 @@
       ]
     },
     {
-      "route": "menu-level",
+      "route": "admin/menu-level",
       "name": "menu-level",
       "type": "sub",
       "icon": "subject",
-      "children": [
-        {
+      "children": [{
           "route": "level-1-1",
           "name": "level-1-1",
           "type": "sub",
-          "children": [
-            {
+          "children": [{
               "route": "level-2-1",
               "name": "level-2-1",
               "type": "sub",
-              "children": [
-                {
-                  "route": "level-3-1",
-                  "name": "level-3-1",
-                  "type": "sub",
-                  "children": [
-                    {
-                      "route": "level-4-1",
-                      "name": "level-4-1",
-                      "type": "link"
-                    }
-                  ]
-                }
-              ]
+              "children": [{
+                "route": "level-3-1",
+                "name": "level-3-1",
+                "type": "sub",
+                "children": [{
+                  "route": "level-4-1",
+                  "name": "level-4-1",
+                  "type": "link"
+                }]
+              }]
             },
             {
               "route": "level-2-2",
