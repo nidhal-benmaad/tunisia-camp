@@ -29,13 +29,14 @@ export class ReservationsComponent implements OnInit {
   isLoading = true;
 
   query = {
+    q: '',
     page: 0,
     size: 3,
   };
 
   get params() {
     const p = Object.assign({}, this.query);
-    p.page += 1;
+
     return p;
   }
 
@@ -79,8 +80,9 @@ export class ReservationsComponent implements OnInit {
   }
 
   reset() {
+    this.query.q = '';
     this.query.page = 0;
-    this.query.size = 10;
+    this.query.size = 3;
     this.getList();
   }
 }

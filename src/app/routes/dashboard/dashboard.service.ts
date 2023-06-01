@@ -139,27 +139,14 @@ export class DashboardService {
     {
       chart: {
         height: 350,
-        type: 'radar',
+        type: 'donut',
       },
-      series: [
-        {
-          name: 'Weekly Revenue',
-          data: [20, 100, 40, 30, 50, 80, 33],
-        },
-      ],
-      labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      plotOptions: {
-        radar: {
-          size: 140,
-          polygons: {
-            strokeColor: '#e9e9e9',
-            fill: {
-              colors: ['#f8f8f8', '#fff'],
-            },
-          },
-        },
+      series: [0],
+      labels: ['No data'],
+      fill: {
+        colors: ['#FF4560'],
       },
-      colors: ['#FF4560'],
+      // colors: colors,
       markers: {
         size: 4,
         colors: ['#fff'],
@@ -183,13 +170,31 @@ export class DashboardService {
           },
         },
       },
+      dataLabels: {
+        formatter: function (
+          val: number,
+          {
+            seriesIndex,
+            dataPointIndex,
+            w,
+          }: { seriesIndex: number; dataPointIndex: number; w: any }
+        ) {
+          // Display the value of the series in the data label
+          return w.globals.series[seriesIndex];
+        },
+      },
     },
   ];
 
   constructor(private http: HttpClient) {}
-
+  private apiUrl =
+    'http://localhost:8082/tunisia-camp/reservations/calculateCampgroundRevenueCurrentMonth';
   getData() {
     return ELEMENT_DATA;
+  }
+
+  getRevenueData() {
+    return this.http.get(this.apiUrl);
   }
 
   getMessages() {

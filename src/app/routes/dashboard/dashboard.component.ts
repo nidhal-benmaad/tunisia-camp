@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { SettingsService } from '@core';
 import { Subscription } from 'rxjs';
-
+import * as chroma from 'chroma-js';
 import { DashboardService } from './dashboard.service';
 
 @Component({
@@ -42,6 +42,32 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.notifySubscription = this.settings.notify.subscribe(res => {
       console.log(res);
     });
+    this.dashboardSrv.getRevenueData().subscribe((res: any) => {
+      console.log('res', res);
+      const keys = Object.keys(res);
+
+      const values = Object.values(res);
+      let updatedOtions: any = this.charts[1];
+      updatedOtions = {
+        ...updatedOtions,
+        series: values,
+        labels: keys,
+        fill: { colors: this.generateColors(values) },
+        colors: this.generateColors(values),
+      };
+
+      this.charts[1] = Object.assign(updatedOtions);
+      console.log('this.charts[1]', this.charts[1]);
+      // Render the updated chart
+      this.chart2?.updateOptions(this.charts[1]);
+    });
+  }
+
+  generateColors(data: any) {
+    const scale = chroma.scale(['#008ffb', '#00e396']); // Adjust the color range as desired
+    const colors = scale.colors(data.length);
+
+    return colors;
   }
 
   ngAfterViewInit() {
