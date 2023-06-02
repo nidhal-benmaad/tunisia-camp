@@ -1,1 +1,74 @@
-<p>home works!</p>
+<section class="background-section">
+  <div class="overlay">
+    <div class="filter-container">
+      <div>
+        <h1 style="color: white">Recherchez le meilleur camping pour vos vacances.</h1>
+        <div class="filter-content">
+          <mat-form-field class="filter-field">
+            <mat-label>Destination</mat-label>
+            <input matInput placeholder="Enter destination" />
+          </mat-form-field>
+
+          <mat-form-field class="filter-field">
+            <mat-label>Start Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="startDatePicker"
+              placeholder="Choose a date"
+              [(ngModel)]="startDate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="filter-field">
+            <mat-label>End Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="endDatePicker"
+              placeholder="Choose a date"
+              [(ngModel)]="endDate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="search()" class="filter-button">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- campings-section -->
+<section class="campings-section">
+  <div class="filter-card">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Filters</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- Filters content -->
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="campings-list">
+    <mat-grid-list cols="1" gutterSize="20px">
+      <!-- <mat-grid-tile *ngFor="let camping of campings">
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar>
+              <img src="{{ camping.image }}" alt="Camping Image" />
+            </div>
+            <mat-card-title>{{ camping.name }}</mat-card-title>
+            <mat-card-subtitle>Rating: {{ camping.rating }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ camping.description }}</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile> -->
+    </mat-grid-list>
+  </div>
+</section>
