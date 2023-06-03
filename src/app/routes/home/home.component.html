@@ -41,34 +41,50 @@
   </div>
 </section>
 <!-- campings-section -->
-<section class="campings-section">
-  <div class="filter-card">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Filters</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <!-- Filters content -->
-      </mat-card-content>
-    </mat-card>
-  </div>
+<div class="camping-container bg-gray-200">
+  <h1 class="camping-title">Campings</h1>
+  <!-- Filters -->
+  <div class="camping-centent">
+    <div class="filters">
+      <!-- Filter fields -->
+      <mat-form-field class="filter-field">
+        <mat-label>Destination</mat-label>
+        <input matInput placeholder="Enter destination" />
+      </mat-form-field>
 
-  <div class="campings-list">
-    <mat-grid-list cols="1" gutterSize="20px">
-      <!-- <mat-grid-tile *ngFor="let camping of campings">
-        <mat-card>
-          <mat-card-header>
-            <div mat-card-avatar>
-              <img src="{{ camping.image }}" alt="Camping Image" />
-            </div>
-            <mat-card-title>{{ camping.name }}</mat-card-title>
-            <mat-card-subtitle>Rating: {{ camping.rating }}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>{{ camping.description }}</p>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile> -->
-    </mat-grid-list>
+      <mat-form-field class="filter-field">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="filter-field">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="endDatePicker" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="filter-button">Search</button>
+    </div>
+
+    <!-- Campings List -->
+    <div class="campings-list">
+      <mat-card class="camping-card" *ngFor="let camping of campings">
+        <img
+          mat-card-image
+          src="{{ camping.image || './../../../assets/images/galerie-dimages.png' }}"
+          alt="Camping Image"
+          class="camping-image"
+        />
+
+        <div style="padding: 20px">
+          <mat-card-title>{{ camping.name }}</mat-card-title>
+          <mat-card-subtitle>Rating: {{ camping.rating }}</mat-card-subtitle>
+          <p>{{ camping.description }}</p>
+        </div>
+      </mat-card>
+    </div>
   </div>
-</section>
+</div>

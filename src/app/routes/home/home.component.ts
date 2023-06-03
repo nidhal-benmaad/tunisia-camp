@@ -9,6 +9,7 @@ export class HomeComponent {
   campings: any[] = [
     {
       name: 'camping1',
+      image: 'https://images.pexels.com/photos/2398220/pexels-photo-2398220.jpeg',
       rating: 4,
     },
     {

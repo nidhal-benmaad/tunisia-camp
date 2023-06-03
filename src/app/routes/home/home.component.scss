@@ -47,26 +47,44 @@
 
 
 /* app.component.css */
-.campings-section {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    gap: 20px;
+
+.camping-container {
+    padding: 15px;
 }
 
-.filter-card {
+.camping-centent {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.filters {
+    width: 30%;
+    padding: 20px;
 }
 
 .campings-list {
+    width: 70%;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-mat-card {
-    width: 100%;
-    /* Adjust the card width as needed */
+.camping-image {
+    width: 200px;
+    height: 200px;
+}
+
+.camping-card {
+    border-radius: 10px;
+    display: flex;
+    box-shadow: none;
+    flex-direction: row;
+    width: calc(80% - 10px);
+    /* Adjust the width as needed */
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.camping-title {
+    font-size: xx-large;
 }
