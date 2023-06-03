@@ -13,6 +13,8 @@ import { ReservationsComponent } from './admin-views/reservations/reservations.c
 
 const COMPONENTS: any[] = [
   DashboardComponent,
+  HomeComponent,
+  ReservationsComponent,
   LoginComponent,
   RegisterComponent,
   Error403Component,
@@ -23,6 +25,6 @@ const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, HomeComponent, ReservationsComponent],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
 })
 export class RoutesModule {}

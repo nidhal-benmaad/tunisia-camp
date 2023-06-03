@@ -1,1 +1,90 @@
-<p>home works!</p>
+<section class="background-section">
+  <div class="overlay">
+    <div class="filter-container">
+      <div>
+        <h1 style="color: white">Recherchez le meilleur camping pour vos vacances.</h1>
+        <div class="filter-content">
+          <mat-form-field class="filter-field">
+            <mat-label>Destination</mat-label>
+            <input matInput placeholder="Enter destination" />
+          </mat-form-field>
+
+          <mat-form-field class="filter-field">
+            <mat-label>Start Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="startDatePicker"
+              placeholder="Choose a date"
+              [(ngModel)]="startDate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="filter-field">
+            <mat-label>End Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="endDatePicker"
+              placeholder="Choose a date"
+              [(ngModel)]="endDate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="search()" class="filter-button">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- campings-section -->
+<div class="camping-container bg-gray-200">
+  <h1 class="camping-title">Campings</h1>
+  <!-- Filters -->
+  <div class="camping-centent">
+    <div class="filters">
+      <!-- Filter fields -->
+      <mat-form-field class="filter-field">
+        <mat-label>Destination</mat-label>
+        <input matInput placeholder="Enter destination" />
+      </mat-form-field>
+
+      <mat-form-field class="filter-field">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="filter-field">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="endDatePicker" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="filter-button">Search</button>
+    </div>
+
+    <!-- Campings List -->
+    <div class="campings-list">
+      <mat-card class="camping-card" *ngFor="let camping of campings">
+        <img
+          mat-card-image
+          src="{{ camping.image || './../../../assets/images/galerie-dimages.png' }}"
+          alt="Camping Image"
+          class="camping-image"
+        />
+
+        <div style="padding: 20px">
+          <mat-card-title>{{ camping.name }}</mat-card-title>
+          <mat-card-subtitle>Rating: {{ camping.rating }}</mat-card-subtitle>
+          <p>{{ camping.description }}</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
