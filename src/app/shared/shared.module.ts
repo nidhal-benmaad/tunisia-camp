@@ -24,6 +24,7 @@ import { DisableControlDirective } from './directives/disable-control.directive'
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { ToObservablePipe } from './pipes/to-observable.pipe';
 import { RatingComponent } from './components/rating/rating.component';
+// import { CarouselComponent } from './components/carousel/carousel.component';
 
 const MODULES: any[] = [
   CommonModule,
