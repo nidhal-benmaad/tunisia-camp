@@ -7,4 +7,15 @@ import { IImage } from '../../interfaces/index';
 })
 export class CarouselComponent {
   @Input() images: IImage[] = [];
+  activeSlideIndex: number = 0;
+
+  prevSlide() {
+    this.activeSlideIndex =
+      this.activeSlideIndex === 0 ? this.images.length - 1 : this.activeSlideIndex - 1;
+  }
+
+  nextSlide() {
+    this.activeSlideIndex =
+      this.activeSlideIndex === this.images.length - 1 ? 0 : this.activeSlideIndex + 1;
+  }
 }

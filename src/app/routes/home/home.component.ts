@@ -25,7 +25,17 @@ export class HomeComponent {
   destination: string = '';
   startDate: Date = new Date();
   endDate: Date = new Date();
+  ratingFilter: string[] = [];
+  categoryFilter: any = {
+    camping: false,
+    residence: false,
+    village: false,
+  };
 
+  applyFilters() {
+    // Apply filters here and perform the search
+    // You can access the selected filters using this.ratingFilter and this.categoryFilter
+  }
   constructor(private hService: HomeService) {}
   ngOnInit() {
     this.getList();
@@ -41,6 +51,7 @@ export class HomeComponent {
       () => {}
     );
   }
+  getOffers(camping: any) {}
   search() {
     // Perform search functionality based on the entered filters
     console.log('Search clicked!');

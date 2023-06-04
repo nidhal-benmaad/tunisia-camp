@@ -10,11 +10,13 @@ import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
 import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
+import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
   HomeComponent,
   ReservationsComponent,
+  CarouselComponent,
   LoginComponent,
   RegisterComponent,
   Error403Component,
