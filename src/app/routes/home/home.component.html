@@ -72,12 +72,7 @@
     <!-- Campings List -->
     <div class="campings-list">
       <mat-card class="camping-card" *ngFor="let camping of campings">
-        <img
-          mat-card-image
-          src="{{ camping.image || './../../../assets/images/galerie-dimages.png' }}"
-          alt="Camping Image"
-          class="camping-image"
-        />
+        <app-carousel [images]="camping.images"></app-carousel>
 
         <div style="padding: 20px">
           <mat-card-title>{{ camping.name }}</mat-card-title>

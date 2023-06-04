@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -25,8 +26,21 @@ export class HomeComponent {
   startDate: Date = new Date();
   endDate: Date = new Date();
 
-  constructor() {}
+  constructor(private hService: HomeService) {}
+  ngOnInit() {
+    this.getList();
+  }
 
+  getList() {
+    this.hService.getCampingList().subscribe(
+      res => {
+        console.log('res', res);
+        this.campings = Object.assign(res);
+      },
+      () => {},
+      () => {}
+    );
+  }
   search() {
     // Perform search functionality based on the entered filters
     console.log('Search clicked!');
