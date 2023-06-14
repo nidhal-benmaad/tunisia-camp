@@ -82,13 +82,15 @@
       <mat-card class="camping-card" *ngFor="let camping of campings">
         <app-carousel [images]="camping.images"></app-carousel>
 
-        <div style="padding: 20px">
+        <div style="padding: 20px; width: 100%">
           <mat-card-title>{{ camping.name }}</mat-card-title>
           <mat-card-subtitle>Rating: {{ camping.rating }}</mat-card-subtitle>
           <p>{{ camping.description }}</p>
-          <button mat-raised-button color="primary" class="" (click)="getOffers(camping)">
-            View offers
-          </button>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" class="" (click)="getOffers(camping.id)">
+              View offers
+            </button>
+          </mat-card-actions>
         </div>
       </mat-card>
     </div>

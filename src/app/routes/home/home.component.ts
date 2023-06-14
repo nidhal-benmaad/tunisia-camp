@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HomeService } from './home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -36,7 +37,7 @@ export class HomeComponent {
     // Apply filters here and perform the search
     // You can access the selected filters using this.ratingFilter and this.categoryFilter
   }
-  constructor(private hService: HomeService) {}
+  constructor(private hService: HomeService, private router: Router) {}
   ngOnInit() {
     this.getList();
   }
@@ -51,7 +52,9 @@ export class HomeComponent {
       () => {}
     );
   }
-  getOffers(camping: any) {}
+  getOffers(campgroundId: number) {
+    this.router.navigate(['/campsites'], { queryParams: { campgroundId } });
+  }
   search() {
     // Perform search functionality based on the entered filters
     console.log('Search clicked!');
