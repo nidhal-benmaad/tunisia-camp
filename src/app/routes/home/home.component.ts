@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HomeService } from './home.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { setCampground } from 'app/ngRx/actions/campground.actions';
 
 @Component({
   selector: 'app-home',
@@ -8,21 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  campings: any[] = [
-    {
-      name: 'camping1',
-      image: 'https://images.pexels.com/photos/2398220/pexels-photo-2398220.jpeg',
-      rating: 4,
-    },
-    {
-      name: 'camping2',
-      rating: 4,
-    },
-    {
-      name: 'camping3',
-      rating: 4,
-    },
-  ];
+  campings: any[] = [];
   destination: string = '';
   startDate: Date = new Date();
   endDate: Date = new Date();
@@ -37,7 +25,7 @@ export class HomeComponent {
     // Apply filters here and perform the search
     // You can access the selected filters using this.ratingFilter and this.categoryFilter
   }
-  constructor(private hService: HomeService, private router: Router) {}
+  constructor(private hService: HomeService, private router: Router, private store: Store) {}
   ngOnInit() {
     this.getList();
   }
@@ -52,8 +40,9 @@ export class HomeComponent {
       () => {}
     );
   }
-  getOffers(campgroundId: number) {
-    this.router.navigate(['/campsites'], { queryParams: { campgroundId } });
+  getOffers(campground: any) {
+    this.store.dispatch(setCampground({ campground }));
+    this.router.navigate(['/campsites'], { queryParams: { campgroundId: campground.id } });
   }
   search() {
     // Perform search functionality based on the entered filters

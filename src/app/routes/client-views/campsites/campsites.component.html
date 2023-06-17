@@ -1,1 +1,59 @@
-<p>campsites works!</p>
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">{{ errorMessage }}</div>
+<div *ngIf="!loading && !error">
+  <div class="camping-container bg-gray-200">
+    <h1 class="camping-title">Campings</h1>
+    <!-- Filters -->
+    <div class="camping-centent">
+      <div class="filters">
+        <div class="filter-row">
+          <mat-checkbox class="filter-field" [(ngModel)]="ratingFilter" value="4-5">
+            4 or 5 stars
+          </mat-checkbox>
+        </div>
+        <div class="filter-row">
+          <mat-checkbox class="filter-field" [(ngModel)]="categoryFilter.camping" value="Camping">
+            Camping
+          </mat-checkbox>
+        </div>
+        <div class="filter-row">
+          <mat-checkbox class="filter-field" [(ngModel)]="categoryFilter.residence" value="Village">
+            Residence Village
+          </mat-checkbox>
+        </div>
+        <div class="filter-row">
+          <mat-checkbox class="filter-field" [(ngModel)]="categoryFilter.village" value="Village">
+            Residence Village
+          </mat-checkbox>
+        </div>
+        <div class="filter-row">
+          <mat-checkbox class="filter-field" [(ngModel)]="categoryFilter" value="Piscine">
+            Piscine
+          </mat-checkbox>
+        </div>
+        <!--       
+            <button mat-raised-button color="primary" class="filter-button" (click)="applyFilters()">
+              Filter
+            </button> -->
+      </div>
+
+      <!-- Campings List -->
+      <div class="campings-list">
+        <mat-card class="camping-card" *ngFor="let item of list">
+          <app-carousel [images]="item.images"></app-carousel>
+
+          <div style="padding: 20px; width: 100%">
+            <mat-card-title>{{ item.name }}</mat-card-title>
+            <mat-card-subtitle>Rating: {{ item.rating }}</mat-card-subtitle>
+            <p>{{ item.description }}</p>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" class="" (click)="redirectToBooking(item)">
+                Réserver
+              </button>
+            </mat-card-actions>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
