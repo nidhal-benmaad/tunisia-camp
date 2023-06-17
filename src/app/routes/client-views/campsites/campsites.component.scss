@@ -1,0 +1,46 @@
+camping-container {
+    padding: 15px;
+}
+
+.camping-centent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filters {
+    width: 30%;
+    padding: 20px;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.campings-list {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.camping-image {
+    width: 200px;
+    height: 200px;
+}
+
+.camping-card {
+    border-radius: 10px;
+    display: flex;
+    box-shadow: none;
+    flex-direction: row;
+    width: calc(80% - 10px);
+    /* Adjust the width as needed */
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.camping-title {
+    font-size: xx-large;
+}
