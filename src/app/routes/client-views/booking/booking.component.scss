@@ -1,0 +1,15 @@
+.user-form {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.input-form {
+    width: 100%;
+}
+
+
+@media (max-width: 600px) {
+    .user-form {
+        width: 90%;
+    }
+}
