@@ -1,0 +1,32 @@
+<h2>Liste des utilisateurs</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <td>{{ user.id }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+<!--    <td>-->
+<!--      <div class="example-button-row">-->
+<!--        <button mat-button color="primary" (click)="updateUser(user)">Modifier</button>-->
+<!--        <button mat-button color="warn" (click)="deleteUser(user)">Supprimer</button>-->
+<!--      </div>-->
+<!--    </td>-->
+    <td>
+      <div class="example-button-row">
+        <button mat-button color="primary" (click)="editUser(user)">Modifier</button>
+        <button mat-button color="warn" (click)="deleteUser(user)">Supprimer</button>
+      </div>
+    </td>
+
+  </tr>
+  </tbody>
+</table>

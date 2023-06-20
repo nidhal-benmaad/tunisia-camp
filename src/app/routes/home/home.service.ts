@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 export interface RepoSearchList {
   content: any[];
@@ -12,11 +12,15 @@ export interface RepoSearchList {
   providedIn: 'root',
 })
 export class HomeService {
-  private apiUrl = 'http://localhost:8082/tunisia-camp/campgroundRest/findAllCampgrouds';
+  private apiUrl = 'http://localhost:8082/tunisia-camp/api/findAllCampgrouds';
 
   constructor(private http: HttpClient) {}
 
-  getCampingList() {
-    return this.http.get(this.apiUrl);
+  getCampingList(headers: HttpHeaders) {
+    console.log("headers: -------->", headers)
+    const httpOptions = {
+      headers
+    };
+    return this.http.get<any>(this.apiUrl);
   }
 }

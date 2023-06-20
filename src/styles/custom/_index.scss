@@ -1,2 +1,8 @@
 @use 'material';
 @use 'table';
+table {
+  width: 100%;
+  background: #fff;
+  padding: 10px 20px;
+  text-align: left;
+}

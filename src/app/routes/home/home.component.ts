@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { HomeService } from './home.service';
+import {TokenService} from "@core";
+import {HttpHeaders} from "@angular/common/http";
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setCampground } from 'app/ngRx/actions/campground.actions';
+
 
 @Component({
   selector: 'app-home',
@@ -25,13 +28,16 @@ export class HomeComponent {
     // Apply filters here and perform the search
     // You can access the selected filters using this.ratingFilter and this.categoryFilter
   }
-  constructor(private hService: HomeService, private router: Router, private store: Store) {}
+
+  constructor(private hService: HomeService, private router: Router, private store: Store,private tokenService: TokenService) {}
   ngOnInit() {
     this.getList();
   }
 
   getList() {
-    this.hService.getCampingList().subscribe(
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.tokenService.getBearerToken());
+
+    this.hService.getCampingList( headers).subscribe(
       res => {
         console.log('res', res);
         this.campings = Object.assign(res);

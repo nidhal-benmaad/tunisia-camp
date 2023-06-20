@@ -71,10 +71,10 @@ export class ChipsComponent {
     const value = event.value.trim();
 
     // Remove person if it no longer has a name
-    if (!value) {
-      this.remove(person);
-      return;
-    }
+    // if (!value) {
+    //   this.remove(person);
+    //   return;
+    // }
 
     // Edit existing person
     const index = this.people.indexOf(person);

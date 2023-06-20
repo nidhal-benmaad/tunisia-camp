@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,13 +16,24 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '@env/environment';
-import { BASE_URL, httpInterceptorProviders, appInitializerProviders } from '@core';
-import { ActionReducer, StoreModule } from '@ngrx/store';
+
+import {
+  BASE_URL,
+  httpInterceptorProviders,
+  appInitializerProviders,
+  AuthService,
+  authInterceptorProviders, AuthInterceptorService
+} from '@core';
+
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
+import {ReactiveFormsModule} from "@angular/forms";
+import {CustomInterceptor} from "@core/interceptors/CustomInterceptor";
+import { ActionReducer, StoreModule } from '@ngrx/store';
 import { camgroundReducer } from './ngRx/reducers/campground.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { localStorageSync } from 'ngrx-store-localstorage';
+
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,6 +53,7 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     CoreModule,
     ThemeModule,
     RoutesModule,
@@ -65,7 +77,14 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
   providers: [
     { provide: BASE_URL, useValue: environment.baseUrl },
     httpInterceptorProviders,
+    authInterceptorProviders,
     appInitializerProviders,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    AuthService,
   ],
   bootstrap: [AppComponent],
 })

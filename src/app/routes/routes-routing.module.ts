@@ -14,8 +14,10 @@ import { authGuard } from '@core/authentication';
 import { ClientLayoutComponent } from '@theme/client-layout/client-layout.component';
 import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
+import {UsersComponent} from "./admin-views/users/users.component";
 import { CampsitesComponent } from './client-views/campsites/campsites.component';
 import { BookingComponent } from './client-views/booking/booking.component';
+
 
 const routes: Routes = [
   {
@@ -32,6 +34,10 @@ const routes: Routes = [
       {
         path: 'reservations',
         component: ReservationsComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
       },
       {
         path: 'design',

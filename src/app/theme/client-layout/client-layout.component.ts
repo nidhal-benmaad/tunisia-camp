@@ -70,7 +70,7 @@ export class ClientLayoutComponent implements OnDestroy {
       if (this.isOver) {
         this.sidenav.close();
       }
-      this.content.scrollTo({ top: 0 });
+      // this.content.scrollTo({ top: 0 });
     });
   }
 
