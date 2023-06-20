@@ -20,15 +20,34 @@ import { BASE_URL, httpInterceptorProviders, appInitializerProviders } from '@co
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AjoutProductComponent} from "./routes/admin-views/ajout-product/ajout-product.component";
+import {UpdateProductComponent} from "./routes/admin-views/update-product/update-product.component";
+import {RouterModule, ROUTES} from "@angular/router";
+import {PromotionComponent} from "./routes/admin-views/promotion/promotion.component";
+import {
+  AffecterPromoToProductComponent
+} from "./routes/admin-views/affecter-promo-to-product/affecter-promo-to-product.component";
+import {ListCategorieComponent} from "./routes/admin-views/list-categorie/list-categorie.component";
+import {AjoutCategorieComponent} from "./routes/admin-views/ajout-categorie/ajout-categorie.component";
 
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+
+
+
+
 @NgModule({
-  declarations: [AppComponent],
+
+  declarations: [AppComponent, AjoutProductComponent,UpdateProductComponent,AffecterPromoToProductComponent,ListCategorieComponent,
+  AjoutCategorieComponent],
+
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

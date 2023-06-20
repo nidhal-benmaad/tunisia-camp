@@ -1,0 +1,36 @@
+<div>
+  <h2>Promotions</h2>
+  <button routerLink="createPromo">Ajouter Promotion</button>
+  <nav>
+    <ul>
+      <li><a routerLink="affecterPromoToProduct">Affecter Promotion à un Produit</a></li>
+      <!-- Autres liens de navigation -->
+    </ul>
+  </nav>
+  <table class="promotions-table">
+    <thead>
+    <tr>
+      <th>Code</th>
+      <th>Discount</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let promotion of promotion">
+      <td>{{ promotion.code }}</td>
+      <td>{{ promotion.discount }}</td>
+      <td>{{ promotion.startDate | date }}</td>
+      <td>{{ promotion.endDate | date }}</td>
+      <td>
+        <button (click)="deletePromo(promotion.id)">Delete</button>
+        <span class="action-spacing"></span> <!-- Add spacing between buttons -->
+        <button [routerLink]="[promotion.id, 'updatePromotion']">Edit</button>
+
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

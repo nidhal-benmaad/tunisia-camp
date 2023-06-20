@@ -16,6 +16,24 @@
       "icon": "credit_card"
     },
     {
+      "route": "admin/products",
+      "name": "Produits",
+      "type": "link",
+      "icon": "credit_card"
+    },
+    {
+      "route": "admin/Categorie",
+      "name": "Categories",
+      "type": "link",
+      "icon": "credit_card"
+    },
+    {
+      "route": "admin/listPromo",
+      "name": "Promotions",
+      "type": "link",
+      "icon": "credit_card"
+    },
+    {
       "route": "admin/design",
       "name": "design",
       "type": "sub",

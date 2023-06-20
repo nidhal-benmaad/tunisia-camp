@@ -1,0 +1,28 @@
+<div>
+  <h2>Produits</h2>
+  <button routerLink="create">Ajouter Produit</button>
+  <table class="promotions-table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of product">
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price | date }}</td>
+      <td>{{ product.quantity | date }}</td>
+      <td>
+        <button (click)="deleteProduct(product.id)">Delete</button>
+        <span class="action-spacing"></span> <!-- Add spacing between buttons -->
+        <button [routerLink]="[product.id,'update']">Edit</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

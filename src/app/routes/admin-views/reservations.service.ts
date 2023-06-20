@@ -20,3 +20,6 @@ export class ReservationService {
     return this.http.get<RepoSearchList>(this.apiUrl, { params });
   }
 }
+
+export class ReservationsService {
+}

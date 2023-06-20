@@ -1,0 +1,22 @@
+<div>
+  <h2>Categories</h2>
+  <button routerLink="create">Ajouter Category</button>
+  <table class="promotions-table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let category of category">
+      <td>{{ category.name }}</td>
+      <td>{{ category.description }}</td>
+      <td>
+        <button (click)="deleteCatego(category.id)">Delete</button>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

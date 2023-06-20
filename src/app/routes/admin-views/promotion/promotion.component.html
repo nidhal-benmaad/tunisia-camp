@@ -1,0 +1,9 @@
+<form (ngSubmit)="savedata()">
+  <input [(ngModel)]="promotion.code" name="code" type="text" placeholder="Code">
+  <input [(ngModel)]="promotion.discount" name="discount" type="number" placeholder="Discount">
+  <input [(ngModel)]="promotion.endDate" name="endDate" type="date" placeholder="End Date">
+  <input [(ngModel)]="promotion.startDate" name="startDate" type="date" placeholder="Start Date">
+  <!-- Add any additional form inputs here -->
+
+  <button type="submit">Create Promotion</button>
+</form>

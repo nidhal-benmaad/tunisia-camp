@@ -14,7 +14,17 @@ import { authGuard } from '@core/authentication';
 import { ClientLayoutComponent } from '@theme/client-layout/client-layout.component';
 import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
-
+import { PromotionComponent } from  './admin-views/promotion/promotion.component';
+import {ProductComponent} from "./admin-views/product/product.component";
+import {AjoutProductComponent} from "./admin-views/ajout-product/ajout-product.component";
+import {UpdateProductComponent} from "./admin-views/update-product/update-product.component";
+import {ListPromoComponent} from "./admin-views/list-promo/list-promo.component";
+import {UpdatePromoComponent} from "./admin-views/update-promo/update-promo.component";
+import {
+  AffecterPromoToProductComponent
+} from "./admin-views/affecter-promo-to-product/affecter-promo-to-product.component";
+import {ListCategorieComponent} from "./admin-views/list-categorie/list-categorie.component";
+import {AjoutCategorieComponent} from "./admin-views/ajout-categorie/ajout-categorie.component";
 const routes: Routes = [
   {
     path: 'admin',
@@ -27,9 +37,42 @@ const routes: Routes = [
       { path: '403', component: Error403Component },
       { path: '404', component: Error404Component },
       { path: '500', component: Error500Component },
+      {path: 'reservations', component: ReservationsComponent},
+      { path: 'listPromo/affecterPromoToProduct', component: AffecterPromoToProductComponent },
+      { path: 'admin/promotion/listPromo', component: ListPromoComponent },
       {
-        path: 'reservations',
-        component: ReservationsComponent,
+        path: 'Categorie',
+        component: ListCategorieComponent,
+      },
+
+      {
+        path: 'Categorie/create',
+        component: AjoutCategorieComponent,
+      },
+      {
+        path: 'listPromo/createPromo',
+        component: PromotionComponent,
+      },
+      {
+        path: 'listPromo',
+        component: ListPromoComponent,
+      },
+      {
+        path: 'products',
+        component: ProductComponent,
+      },
+      {
+        path: 'products/:id/update',
+        component: UpdateProductComponent,
+      },
+      {
+        path: 'listPromo/:id/updatePromotion',
+        component: UpdatePromoComponent,
+
+      },
+      {
+        path: 'products/create',
+        component: AjoutProductComponent,
       },
       {
         path: 'design',
