@@ -14,6 +14,7 @@ import { authGuard } from '@core/authentication';
 import { ClientLayoutComponent } from '@theme/client-layout/client-layout.component';
 import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
+import {UsersComponent} from "./admin-views/users/users.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'reservations',
         component: ReservationsComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
       },
       {
         path: 'design',

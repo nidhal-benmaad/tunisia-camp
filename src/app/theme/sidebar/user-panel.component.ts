@@ -12,14 +12,14 @@ import { AuthService, User } from '@core/authentication';
       <div class="matero-user-panel-icons">
         <button
           mat-icon-button
-          routerLink="/profile/overview"
+          routerLink="admin/profile/overview"
           matTooltip="{{ 'profile' | translate }}"
         >
           <mat-icon class="icon-18">account_circle</mat-icon>
         </button>
         <button
           mat-icon-button
-          routerLink="/profile/settings"
+          routerLink="/admin/profile/settings"
           matTooltip="{{ 'edit_profile' | translate }}"
         >
           <mat-icon class="icon-18">edit</mat-icon>

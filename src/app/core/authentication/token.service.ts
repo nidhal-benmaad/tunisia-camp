@@ -11,7 +11,7 @@ import { currentTimestamp, filterObject } from './helpers';
   providedIn: 'root',
 })
 export class TokenService implements OnDestroy {
-  private key = 'ng-matero-token';
+  private key = 'token';
 
   private change$ = new BehaviorSubject<BaseToken | undefined>(undefined);
   private refresh$ = new Subject<BaseToken | undefined>();
@@ -25,6 +25,7 @@ export class TokenService implements OnDestroy {
     if (!this._token) {
       this._token = this.factory.create(this.store.get(this.key));
     }
+    console.log('token.sevice.get token', this._token);
 
     return this._token;
   }
@@ -40,9 +41,14 @@ export class TokenService implements OnDestroy {
   }
 
   set(token?: Token): TokenService {
+    console.log('SET: ', token);
+
     this.save(token);
 
     return this;
+  }
+  setToken(token?: Token): void {
+    this.save(token);
   }
 
   clear(): void {
@@ -50,11 +56,13 @@ export class TokenService implements OnDestroy {
   }
 
   valid(): boolean {
+    console.log('token.service.valid', this.token?.valid());
     return this.token?.valid() ?? false;
   }
 
   getBearerToken(): string {
-    return this.token?.getBearerToken() ?? '';
+    console.log("heyyyyyyyyyyyyyyyyyyyyyyyy"+this._token?.token)
+    return this._token?.token ?? '';
   }
 
   getRefreshToken(): string | void {
@@ -66,13 +74,14 @@ export class TokenService implements OnDestroy {
   }
 
   private save(token?: Token): void {
+
     this._token = undefined;
 
     if (!token) {
       this.store.remove(this.key);
     } else {
-      const value = Object.assign({ access_token: '', token_type: 'Bearer' }, token, {
-        exp: token.expires_in ? currentTimestamp() + token.expires_in : null,
+      const value = Object.assign({ token: '', token_type: 'Bearer' }, token, {
+        exp: token.exp ? token.exp : null,
       });
       this.store.set(this.key, filterObject(value));
     }

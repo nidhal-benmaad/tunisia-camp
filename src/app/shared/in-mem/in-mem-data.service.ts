@@ -13,7 +13,7 @@ class JWT {
     const refreshTokenExpiresIn = 86400;
 
     return filterObject({
-      access_token: this.createToken(user, expiresIn),
+      token: this.createToken(user, expiresIn),
       token_type: 'bearer',
       expires_in: user.refresh_token ? expiresIn : undefined,
       refresh_token: user.refresh_token ? this.createToken(user, refreshTokenExpiresIn) : undefined,

@@ -8,11 +8,35 @@
     </mat-card-header>
 
     <mat-card-content>
-      <form class="form-field-full" [formGroup]="registerForm">
+      <form class="form-field-full" [formGroup]="registerForm" (ngSubmit)="register()" >
         <mat-form-field appearance="outline">
-          <mat-label>{{'username' | translate}}</mat-label>
-          <input matInput formControlName="username" required>
-          <mat-error *ngIf="registerForm.get('username')?.invalid">
+          <mat-label>{{'firstName' | translate}}</mat-label>
+          <input matInput formControlName="firstName" required>
+          <mat-error *ngIf="registerForm.get('firstName')?.invalid">
+            <span>{{'validations.required' | translate}}</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{'lastName' | translate}}</mat-label>
+          <input matInput formControlName="lastName" required>
+          <mat-error *ngIf="registerForm.get('lastName')?.invalid">
+            <span>{{'validations.required' | translate}}</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{'phoneNumber' | translate}}</mat-label>
+          <input matInput formControlName="phoneNumber" required>
+          <mat-error *ngIf="registerForm.get('phoneNumber')?.invalid">
+            <span>{{'validations.required' | translate}}</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{'email' | translate}}</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="registerForm.get('email')?.invalid">
             <span>{{'validations.required' | translate}}</span>
           </mat-error>
         </mat-form-field>
@@ -39,7 +63,7 @@
 
         <mat-checkbox>{{'read_and_agree' | translate}}</mat-checkbox>
 
-        <button class="w-full m-y-16" mat-raised-button color="primary">
+        <button class="w-full m-y-16" mat-raised-button color="primary" type="submit">
           {{'register' | translate}}
         </button>
 
