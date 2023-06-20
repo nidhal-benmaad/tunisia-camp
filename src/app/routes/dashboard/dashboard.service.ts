@@ -187,16 +187,17 @@ export class DashboardService {
   ];
 
   constructor(private http: HttpClient) {}
-  private apiUrl =
-    'http://localhost:8082/tunisia-camp/reservations/calculateCampgroundRevenueCurrentMonth';
+  private apiUrl = 'http://localhost:8082/tunisia-camp/reservations/';
   getData() {
     return ELEMENT_DATA;
   }
 
   getRevenueData() {
-    return this.http.get(this.apiUrl);
+    return this.http.get(this.apiUrl + 'calculateCampgroundRevenueCurrentMonth');
   }
-
+  getTotalRevenueByCurrentMonth() {
+    return this.http.get(this.apiUrl + 'getTotalRevenueByCurrentMonth');
+  }
   getMessages() {
     return MESSAGES;
   }
@@ -207,5 +208,10 @@ export class DashboardService {
 
   getStats() {
     return this.stats;
+  }
+
+  setStats(stats: any) {
+    this.stats = Object.assign(stats);
+    console.log('Updated stats:', this.stats);
   }
 }

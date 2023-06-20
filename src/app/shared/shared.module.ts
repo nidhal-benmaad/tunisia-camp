@@ -24,6 +24,7 @@ import { DisableControlDirective } from './directives/disable-control.directive'
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { ToObservablePipe } from './pipes/to-observable.pipe';
 import { RatingComponent } from './components/rating/rating.component';
+import { PaymentStepComponent } from './components/payment-step/payment-step.component';
 // import { CarouselComponent } from './components/carousel/carousel.component';
 
 const MODULES: any[] = [
@@ -51,6 +52,13 @@ const PIPES: any[] = [SafeUrlPipe, ToObservablePipe];
 @NgModule({
   imports: [...MODULES],
   exports: [...MODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, ...DIRECTIVES, ...PIPES, RatingComponent],
+  declarations: [
+    ...COMPONENTS,
+    ...COMPONENTS_DYNAMIC,
+    ...DIRECTIVES,
+    ...PIPES,
+    RatingComponent,
+    PaymentStepComponent,
+  ],
 })
 export class SharedModule {}

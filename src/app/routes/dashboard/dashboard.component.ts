@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   NgZone,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { SettingsService } from '@core';
 import { Subscription } from 'rxjs';
@@ -35,7 +36,8 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private ngZone: NgZone,
     private dashboardSrv: DashboardService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -60,6 +62,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log('this.charts[1]', this.charts[1]);
       // Render the updated chart
       this.chart2?.updateOptions(this.charts[1]);
+    });
+    this.dashboardSrv.getTotalRevenueByCurrentMonth().subscribe((res: any) => {
+      let updatedStats = [...this.stats]; // Create a copy of the stats array
+      updatedStats[1].amount = res + '';
+
+      this.dashboardSrv.setStats(updatedStats);
+      this.cdr.detectChanges();
+      console.log('res', res);
     });
   }
 

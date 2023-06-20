@@ -46,6 +46,10 @@
             <mat-card-title>{{ item.name }}</mat-card-title>
             <mat-card-subtitle>Rating: {{ item.rating }}</mat-card-subtitle>
             <p>{{ item.description }}</p>
+            <p>
+              De {{ formatedDate(item.startDateAv) }} à
+              {{ formatedDate(item.endDateAv) }}
+            </p>
             <mat-card-actions>
               <button mat-raised-button color="primary" class="" (click)="redirectToBooking(item)">
                 Réserver

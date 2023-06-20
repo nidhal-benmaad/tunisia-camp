@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { selectCampground, selectCampgroundState } from 'app/ngRx/selectors/campground.selectors';
 import { ICampground } from '@shared';
 import { Observable } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-campsites',
@@ -70,7 +71,11 @@ export class CampsitesComponent implements OnInit {
       }
     );
   }
+  formatedDate(timestamp: any) {
+    return moment(timestamp).format('LL');
+  }
   redirectToBooking(item: any) {
+    console.log('item', item);
     this.campsiteSelectionService.setSelectedCampsite(item);
     this.router.navigate(['/booking']);
   }

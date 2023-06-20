@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,18 +22,19 @@ import {
   httpInterceptorProviders,
   appInitializerProviders,
   AuthService,
-  authInterceptorProviders, AuthInterceptorService
+  authInterceptorProviders,
+  AuthInterceptorService,
 } from '@core';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
-import {ReactiveFormsModule} from "@angular/forms";
-import {CustomInterceptor} from "@core/interceptors/CustomInterceptor";
+import { ReactiveFormsModule } from '@angular/forms';
+import { CustomInterceptor } from '@core/interceptors/CustomInterceptor';
 import { ActionReducer, StoreModule } from '@ngrx/store';
 import { camgroundReducer } from './ngRx/reducers/campground.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { localStorageSync } from 'ngrx-store-localstorage';
-
+import { formatedDate } from '@shared/utils/functions';
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -82,7 +83,7 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
+      multi: true,
     },
     AuthService,
   ],

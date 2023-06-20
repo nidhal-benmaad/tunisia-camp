@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { PageEvent } from '@angular/material/paginator';
 import { MtxGridColumn } from '@ng-matero/extensions/grid';
 import { ReservationService } from '../reservations.service';
+import { TranslateService } from '@ngx-translate/core';
+import { MtxDialog } from '@ng-matero/extensions/dialog';
+import { TablesKitchenSinkEditComponent } from 'app/routes/tables/kitchen-sink/edit/edit.component';
 @Component({
   selector: 'app-reservations',
   templateUrl: './reservations.component.html',
@@ -23,6 +26,34 @@ export class ReservationsComponent implements OnInit {
       type: 'currency',
       typeParameter: { currencyCode: '$' },
     },
+    {
+      header: this.translate.stream('table_kitchen_sink.operation'),
+      field: 'operation',
+      minWidth: 160,
+      width: '160px',
+      pinned: 'right',
+      type: 'button',
+      buttons: [
+        {
+          type: 'icon',
+          icon: 'edit',
+          tooltip: this.translate.stream('table_kitchen_sink.edit'),
+          click: record => this.edit(record),
+        },
+        {
+          color: 'warn',
+          icon: 'delete',
+          text: this.translate.stream('table_kitchen_sink.delete'),
+          tooltip: this.translate.stream('table_kitchen_sink.delete'),
+          pop: {
+            title: this.translate.stream('table_kitchen_sink.confirm_delete'),
+            closeText: this.translate.stream('table_kitchen_sink.close'),
+            okText: this.translate.stream('table_kitchen_sink.ok'),
+          },
+          click: record => this.delete(record),
+        },
+      ],
+    },
   ];
   list: any[] = [];
   total = 0;
@@ -40,7 +71,12 @@ export class ReservationsComponent implements OnInit {
     return p;
   }
 
-  constructor(private remoteSrv: ReservationService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private remoteSrv: ReservationService,
+    private cdr: ChangeDetectorRef,
+    private translate: TranslateService,
+    private dialog: MtxDialog
+  ) {}
 
   ngOnInit() {
     this.getList();
@@ -66,6 +102,22 @@ export class ReservationsComponent implements OnInit {
         this.cdr.detectChanges();
       }
     );
+  }
+
+  edit(value: any) {
+    const dialogRef = this.dialog.originalOpen(TablesKitchenSinkEditComponent, {
+      width: '600px',
+      data: { record: value },
+    });
+
+    dialogRef.afterClosed().subscribe(() => console.log('The dialog was closed'));
+  }
+
+  delete(value: any) {
+    this.remoteSrv.deleteReservation(value.id).subscribe(() => {
+      this.dialog.alert(`You have deleted`);
+      this.getList();
+    });
   }
 
   getNextPage(e: PageEvent) {
