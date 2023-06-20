@@ -12,11 +12,17 @@ import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 import {UsersComponent} from "./admin-views/users/users.component";
+import { CampsitesComponent } from './client-views/campsites/campsites.component';
+import { BookingComponent } from './client-views/booking/booking.component';
+
 
 const COMPONENTS: any[] = [
   DashboardComponent,
   HomeComponent,
   ReservationsComponent,
+  UsersComponent,
+  CampsitesComponent,
+  BookingComponent,
   CarouselComponent,
   LoginComponent,
   RegisterComponent,
@@ -28,6 +34,6 @@ const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, UsersComponent],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC]
 })
 export class RoutesModule {}

@@ -15,6 +15,9 @@ import { ClientLayoutComponent } from '@theme/client-layout/client-layout.compon
 import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
 import {UsersComponent} from "./admin-views/users/users.component";
+import { CampsitesComponent } from './client-views/campsites/campsites.component';
+import { BookingComponent } from './client-views/booking/booking.component';
+
 
 const routes: Routes = [
   {
@@ -79,6 +82,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      { path: 'campsites', component: CampsitesComponent },
+      { path: 'booking', component: BookingComponent },
     ],
   },
   {

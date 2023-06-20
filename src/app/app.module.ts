@@ -16,6 +16,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '@env/environment';
+
 import {
   BASE_URL,
   httpInterceptorProviders,
@@ -28,6 +29,10 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
 import {ReactiveFormsModule} from "@angular/forms";
 import {CustomInterceptor} from "@core/interceptors/CustomInterceptor";
+import { ActionReducer, StoreModule } from '@ngrx/store';
+import { camgroundReducer } from './ngRx/reducers/campground.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
@@ -37,6 +42,14 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    StoreModule.forRoot({ campground: camgroundReducer }),
+    // Configure state persistence
+    StoreModule.forRoot(
+      { campground: camgroundReducer },
+      {
+        metaReducers: [localStorageSyncReducer],
+      }
+    ),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -76,3 +89,7 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({ keys: ['campground'], rehydrate: true })(reducer);
+}
