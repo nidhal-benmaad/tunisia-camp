@@ -16,3 +16,8 @@ export interface IProfile {
   website: string;
   date: string;
 }
+
+export interface IImage {
+  id: number;
+  url: string;
+}

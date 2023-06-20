@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -24,9 +25,33 @@ export class HomeComponent {
   destination: string = '';
   startDate: Date = new Date();
   endDate: Date = new Date();
+  ratingFilter: string[] = [];
+  categoryFilter: any = {
+    camping: false,
+    residence: false,
+    village: false,
+  };
 
-  constructor() {}
+  applyFilters() {
+    // Apply filters here and perform the search
+    // You can access the selected filters using this.ratingFilter and this.categoryFilter
+  }
+  constructor(private hService: HomeService) {}
+  ngOnInit() {
+    this.getList();
+  }
 
+  getList() {
+    this.hService.getCampingList().subscribe(
+      res => {
+        console.log('res', res);
+        this.campings = Object.assign(res);
+      },
+      () => {},
+      () => {}
+    );
+  }
+  getOffers(camping: any) {}
   search() {
     // Perform search functionality based on the entered filters
     console.log('Search clicked!');

@@ -20,12 +20,14 @@ import {AjoutProductComponent} from "./admin-views/ajout-product/ajout-product.c
 import {UpdatePromoComponent} from "./admin-views/update-promo/update-promo.component";
 import {AffecterPromoToProductComponent} from "./admin-views/affecter-promo-to-product/affecter-promo-to-product.component";
 import {ListCategorieComponent} from "./admin-views/list-categorie/list-categorie.component";
+import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
   HomeComponent,
   ReservationsComponent,
   PromotionComponent,
+  CarouselComponent,
   LoginComponent,
   RegisterComponent,
   Error403Component,
