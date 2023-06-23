@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CampsiteSelectionService } from '../booking/campsite-selection.service';
 import { Store } from '@ngrx/store';
 import { selectCampground, selectCampgroundState } from 'app/ngRx/selectors/campground.selectors';
-import { ICampground } from '@shared';
+import { ICampground, SharedModule } from '@shared';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
+import { HeaderFilterComponent } from '@shared/components/header-filter/header-filter.component';
 
 @Component({
   selector: 'app-campsites',
