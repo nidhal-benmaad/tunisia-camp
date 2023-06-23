@@ -20,6 +20,7 @@ const COMPONENTS: any[] = [
   DashboardComponent,
   HomeComponent,
   ReservationsComponent,
+  HeaderFilterComponent,
   UsersComponent,
   CampsitesComponent,
   BookingComponent,
