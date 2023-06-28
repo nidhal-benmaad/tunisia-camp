@@ -23,7 +23,6 @@ import { ErrorCodeComponent } from './components/error-code/error-code.component
 import { DisableControlDirective } from './directives/disable-control.directive';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { ToObservablePipe } from './pipes/to-observable.pipe';
-import { RatingComponent } from './components/rating/rating.component';
 import { PaymentStepComponent } from './components/payment-step/payment-step.component';
 // import { CarouselComponent } from './components/carousel/carousel.component';
 
@@ -57,7 +56,6 @@ const PIPES: any[] = [SafeUrlPipe, ToObservablePipe];
     ...COMPONENTS_DYNAMIC,
     ...DIRECTIVES,
     ...PIPES,
-    RatingComponent,
     PaymentStepComponent,
   ],
 })

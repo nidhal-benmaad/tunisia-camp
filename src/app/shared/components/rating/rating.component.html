@@ -1,1 +1,3 @@
-<p>rating works!</p>
+<mat-icon *ngFor="let star of stars" [ngClass]="{ 'star': true, 'star-filled': star <= rating }"
+  >star</mat-icon
+>

@@ -2,7 +2,7 @@
 <div *ngIf="loading">Loading...</div>
 <div *ngIf="error">{{ errorMessage }}</div>
 <div *ngIf="!loading && !error">
-  <div class="camping-container bg-gray-200">
+  <div class="camping-container bg-white">
     <h1 class="camping-title">Campings</h1>
     <!-- Filters -->
     <div class="camping-centent">
@@ -45,12 +45,17 @@
 
           <div style="padding: 20px; width: 100%">
             <mat-card-title>{{ item.name }}</mat-card-title>
-            <mat-card-subtitle>Rating: {{ item.rating }}</mat-card-subtitle>
+            <app-rating [rating]="item.rating"></app-rating>
+            <!-- <mat-card-subtitle>Rating: {{ item.rating }}</mat-card-subtitle> -->
             <p>{{ item.description }}</p>
             <p>
               De {{ formatedDate(item.startDateAv) }} à
               {{ formatedDate(item.endDateAv) }}
             </p>
+            <div style="display: flex; align-items: center">
+              <mat-icon>group</mat-icon>
+              <span style="margin-left: 5px">{{ item.capacity }}</span>
+            </div>
             <mat-card-actions>
               <button mat-raised-button color="primary" class="" (click)="redirectToBooking(item)">
                 Réserver
@@ -58,6 +63,14 @@
             </mat-card-actions>
           </div>
         </mat-card>
+
+        <mat-paginator
+          [length]="total"
+          [pageSize]="params.size"
+          aria-label="Select page"
+          (page)="handlePageEvent($event)"
+        >
+        </mat-paginator>
       </div>
     </div>
   </div>

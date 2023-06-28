@@ -1,9 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { ICampground } from '@shared';
+import { ICampsite, PageableList } from '@shared';
 
-export const setCampground = createAction('Set Campground', props<{ campground: ICampground }>());
-export const setCampgrounds = createAction(
-  'Set Campgrounds',
-  props<{ campgrounds: ICampground[] }>()
-);
-export const clearCampground = createAction('[Campground] Clear Campground');
+export const setCampsite = createAction('Set Campsite', props<{ campsite: ICampsite }>());
+export const setCampsites = createAction('Set Campsites', props<{ campsites: PageableList }>());
+export const clearCampsite = createAction('[Campsite] Clear Campground');

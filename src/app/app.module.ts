@@ -35,6 +35,7 @@ import { camgroundReducer } from './ngRx/reducers/campground.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { formatedDate } from '@shared/utils/functions';
+import { campsiteReducer } from './ngRx/reducers/campsite.reducer';
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -43,10 +44,9 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    StoreModule.forRoot({ campground: camgroundReducer }),
     // Configure state persistence
     StoreModule.forRoot(
-      { campground: camgroundReducer },
+      { campground: camgroundReducer, campsite: campsiteReducer },
       {
         metaReducers: [localStorageSyncReducer],
       }

@@ -15,12 +15,14 @@ import { UsersComponent } from './admin-views/users/users.component';
 import { CampsitesComponent } from './client-views/campsites/campsites.component';
 import { BookingComponent } from './client-views/booking/booking.component';
 import { HeaderFilterComponent } from '@shared/components/header-filter/header-filter.component';
+import { RatingComponent } from '@shared/components/rating/rating.component';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
   HomeComponent,
   ReservationsComponent,
   HeaderFilterComponent,
+  RatingComponent,
   UsersComponent,
   CampsitesComponent,
   BookingComponent,

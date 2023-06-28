@@ -1,16 +1,16 @@
 <!-- header-filter.component.html -->
-<section class="background-section">
+<section class="bg-purple-50">
   <div class="overlay">
     <div class="filter-container">
-      <div>
+      <div style="padding: 50px">
         <h1>Recherchez le meilleur camping pour vos vacances.</h1>
         <div class="filter-content">
-          <mat-form-field class="filter-field">
+          <mat-form-field appearance="outline" class="filter-field">
             <mat-label>Destination</mat-label>
             <input matInput placeholder="Enter destination" />
           </mat-form-field>
 
-          <mat-form-field class="filter-field">
+          <mat-form-field appearance="outline" class="filter-field">
             <mat-label>Start Date</mat-label>
             <input
               matInput
@@ -23,7 +23,7 @@
             <mat-datepicker #startDatePicker></mat-datepicker>
           </mat-form-field>
 
-          <mat-form-field class="filter-field">
+          <mat-form-field appearance="outline" class="filter-field">
             <mat-label>End Date</mat-label>
             <input
               matInput
@@ -36,7 +36,7 @@
             <mat-datepicker #endDatePicker></mat-datepicker>
           </mat-form-field>
 
-          <mat-form-field class="filter-field">
+          <mat-form-field appearance="outline" class="filter-field">
             <mat-label>Number of Guests</mat-label>
             <input
               matInput
