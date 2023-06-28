@@ -7,6 +7,8 @@ import { IImage } from '../../interfaces/index';
 })
 export class CarouselComponent {
   @Input() images: IImage[] = [];
+  @Input() carouselWidth: number = 200;
+  @Input() carouselHeight: number = 200;
   activeSlideIndex: number = 0;
 
   prevSlide() {

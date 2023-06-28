@@ -11,15 +11,18 @@ import { Error500Component } from './sessions/500.component';
 import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
-import {UsersComponent} from "./admin-views/users/users.component";
+import { UsersComponent } from './admin-views/users/users.component';
 import { CampsitesComponent } from './client-views/campsites/campsites.component';
 import { BookingComponent } from './client-views/booking/booking.component';
-
+import { HeaderFilterComponent } from '@shared/components/header-filter/header-filter.component';
+import { RatingComponent } from '@shared/components/rating/rating.component';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
   HomeComponent,
   ReservationsComponent,
+  HeaderFilterComponent,
+  RatingComponent,
   UsersComponent,
   CampsitesComponent,
   BookingComponent,
@@ -34,6 +37,6 @@ const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC]
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
 })
 export class RoutesModule {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -6,13 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./rating.component.scss'],
 })
 export class RatingComponent {
-  rating: number = 0;
-
-  getRatingIcons(rating: number): string[] {
-    const icons = [];
-    for (let i = 0; i < rating; i++) {
-      icons.push('star');
-    }
-    return icons;
-  }
+  @Input() rating: number = 0;
+  stars: number[] = [1, 2, 3, 4, 5];
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IReservation } from '@shared';
 export interface RepoSearchList {
   content: any[];
   totalPages: number;
@@ -18,5 +19,14 @@ export class ReservationService {
 
   getList(params: any): Observable<RepoSearchList> {
     return this.http.get<RepoSearchList>(this.apiUrl, { params });
+  }
+  addReservation(payload: any): Observable<IReservation> {
+    return this.http.post<IReservation>(`${this.apiUrl}/create`, payload);
+  }
+  deleteReservation(id: number) {
+    return this.http.delete(`${this.apiUrl}/deleteCId/${id}`);
+  }
+  updateReservation(data: any) {
+    return this.http.put(`${this.apiUrl}/update/`, data);
   }
 }

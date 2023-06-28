@@ -8,8 +8,9 @@ camping-container {
 }
 
 .filters {
-    width: 30%;
+    width: 20%;
     padding: 20px;
+    border-right: 1px solid #ccc;
 }
 
 .filter-row {
@@ -19,7 +20,8 @@ camping-container {
 }
 
 .campings-list {
-    width: 70%;
+    padding: 50px;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -39,8 +41,11 @@ camping-container {
     /* Adjust the width as needed */
     margin-bottom: 20px;
     overflow: hidden;
+    border: 1px solid #ccc;
 }
 
 .camping-title {
+    margin: 0;
+    padding: 50px;
     font-size: xx-large;
 }

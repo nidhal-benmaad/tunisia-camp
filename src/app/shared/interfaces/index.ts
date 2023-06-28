@@ -10,7 +10,27 @@ export interface IUser {
   email: string;
   phoneNumber: string;
   role: string;
-  address: string;
+  address: any;
+}
+export interface IReservation {
+  startDate: Date;
+  endDate: Date;
+  user: IUser;
+  totalPrice: Number;
+  numGuests: Number;
+  campsite: ICampsite;
+}
+export interface ICampsite {
+  images: any[];
+  name: string;
+  description: string;
+  capacity: number;
+  createdDate: Date;
+  startDateAv: Date;
+  endDateAv: Date;
+  isAvailable: boolean;
+  price: Number;
+  rating: Number;
 }
 export interface ICampground {
   images: any[];
@@ -40,9 +60,9 @@ export interface IImage {
 }
 
 export interface PageableList {
-  content: any[];
-  totalPages: number;
-  totalElements: number;
-  size: number;
-  number: number;
+  content: any[] | [];
+  totalPages: number | 0;
+  totalElements: number | 0;
+  size: number | 0;
+  number: number | 0;
 }
