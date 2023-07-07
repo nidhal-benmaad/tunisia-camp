@@ -77,8 +77,8 @@ const routes: Routes = [
   {
     path: '',
     component: ClientLayoutComponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    // canActivate: [authGuard],
+    // canActivateChild: [authGuard],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
