@@ -1,0 +1,62 @@
+<form (ngSubmit)="savedata()" class="payment-form" #paymentForm="ngForm">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="payment.name" required>
+    <div *ngIf="paymentForm.controls['name'].invalid && paymentForm.controls['name'].touched" class="error-message">
+      Name is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="accountNumber">Account Number:</label>
+    <input type="text" id="accountNumber" name="accountNumber" [(ngModel)]="payment.accountNumber" required>
+    <div *ngIf="paymentForm.controls['accountNumber'].invalid && paymentForm.controls['accountNumber'].touched" class="error-message">
+      Account Number is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="billingAddress">Billing Address:</label>
+    <input type="text" id="billingAddress" name="billingAddress" [(ngModel)]="payment.billingAddress" required>
+    <div *ngIf="paymentForm.controls['billingAddress'].invalid && paymentForm.controls['billingAddress'].touched" class="error-message">
+      Billing Address is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="expirationDate">Expiration Date:</label>
+    <input type="date" id="expirationDate" name="expirationDate" [(ngModel)]="payment.expirationDate" required>
+    <div *ngIf="paymentForm.controls['expirationDate'].invalid && paymentForm.controls['expirationDate'].touched" class="error-message">
+      Expiration Date is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="paymentType">Payment Type:</label>
+    <select id="paymentType" name="paymentType" [(ngModel)]="payment.paymentType" required>
+      <option [value]="paymentType.CREDIT_CARD">Credit Card</option>
+      <option [value]="paymentType.PAYPAL">PayPal</option>
+      <option [value]="paymentType.DEBIT_CARD">Debit Card</option>
+      <option [value]="paymentType.CASH_ON_DELIVERY">Cash on Delivery</option>
+      <!-- Ajoutez d'autres options selon vos besoins -->
+    </select>
+    <div *ngIf="paymentForm.controls['paymentType'].invalid && paymentForm.controls['paymentType'].touched" class="error-message">
+      Payment Type is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="createdAt">Created At:</label>
+    <input type="date" id="createdAt" name="createdAt" [(ngModel)]="payment.createdAt" required>
+    <div *ngIf="paymentForm.controls['createdAt'].invalid && paymentForm.controls['createdAt'].touched" class="error-message">
+      Created At is required
+    </div>
+  </div>
+
+  <button type="submit" class="submit-button" [disabled]="!paymentForm.valid">Payer</button>
+
+  <div class="cart-total">
+    <h2 class="cart-total-label">Total Order Amount:</h2>
+    <p class="cart-total-amount">{{ totalOrderAmount }}</p>
+  </div>
+</form>

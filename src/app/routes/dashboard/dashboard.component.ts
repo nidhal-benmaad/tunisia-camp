@@ -4,12 +4,14 @@ import {
   AfterViewInit,
   OnDestroy,
   ChangeDetectionStrategy,
-  NgZone,
+  NgZone, ChangeDetectorRef,
 } from '@angular/core';
 import { SettingsService } from '@core';
 import { Subscription } from 'rxjs';
 import * as chroma from 'chroma-js';
 import { DashboardService } from './dashboard.service';
+import {Product} from "../../model/Product";
+import {ProductDTO} from "../../model/ProductDTO";
 
 @Component({
   selector: 'app-dashboard',
@@ -30,12 +32,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   stats = this.dashboardSrv.getStats();
 
+
   notifySubscription!: Subscription;
 
   constructor(
     private ngZone: NgZone,
     private dashboardSrv: DashboardService,
-    private settings: SettingsService
+    private settings: SettingsService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -61,7 +65,10 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       // Render the updated chart
       this.chart2?.updateOptions(this.charts[1]);
     });
+    this.fetchTopSellingProduct();
+
   }
+
 
   generateColors(data: any) {
     const scale = chroma.scale(['#008ffb', '#00e396']); // Adjust the color range as desired
@@ -69,6 +76,8 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
     return colors;
   }
+  topSellingProduct!: ProductDTO;
+
 
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => this.initChart());
@@ -91,4 +100,19 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.chart2 = new ApexCharts(document.querySelector('#chart2'), this.charts[1]);
     this.chart2?.render();
   }
+
+  fetchTopSellingProduct() {
+    this.dashboardSrv.getTopSellingProduct().subscribe(
+      (response: any) => {
+        console.log('API response', response);
+        this.topSellingProduct = response;
+        console.log('topSellingProduct', this.topSellingProduct);
+        this.changeDetectorRef.detectChanges(); // Déclenchez la détection du changement après avoir reçu les données
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  }
+
 }

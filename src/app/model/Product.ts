@@ -5,7 +5,8 @@ export class Product {
   price!: number;
   quantity!: number;
   discountedPrice!: number;
-  image!: string;
+  imageUrl!: string; // Ajoutez cette propriété pour l'URL de l'image
+  imageId!: number;
 
 }
 

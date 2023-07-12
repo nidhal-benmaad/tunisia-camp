@@ -3,15 +3,31 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from '../../model/Product';
 import {Observable} from "rxjs";
 import {Promotion} from "../../model/Promotion";
+export interface RepoSearchList {
+  content: any[];
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  number: number;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  private products: any[] = [];
 
-  constructor(private http: HttpClient) { }
-  findAllProduct():Observable<any> {
-    return this.http.get('http://localhost:2022/tunisia-camp/product/products');
+  getProducts(): any[] {
+    return this.products;
   }
+
+  setProducts(products: any[]): void {
+    this.products = products;
+  }
+  constructor(private http: HttpClient) { }
+  findAllProducts(params: any):Observable<RepoSearchList> {
+    return this.http.get<RepoSearchList>('http://localhost:2022/tunisia-camp/product/getProductByPage', { params });
+  }
+
 
   addProduct(data: Product | undefined) {
     return this.http.post<Product>('http://localhost:2022/tunisia-camp/product/create',data);
@@ -29,6 +45,12 @@ export class ProductService {
   deleteProduct(id: number) {
     const url = `http://localhost:2022/tunisia-camp/product/deleteCId/${id}`;
     return this.http.delete(url);
+  }
+  private apiUrl = 'http://localhost:2022/tunisia-camp/product';
+  private apiUrl2 = 'http://localhost:2022/tunisia-camp';
+
+  EditProduct(data: any) {
+    return this.http.put(`${this.apiUrl}/update/`, data);
   }
 
 

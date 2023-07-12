@@ -1,0 +1,32 @@
+<div class="cart-container">
+  <div class="cart-items">
+    <div *ngFor="let productDetailAmount of productDetailAmounts" class="cart-item">
+      <div class="cart-item-image">
+        <div *ngFor="let imageUrl of productDetailAmount.imageUrls" class="product-image">
+          <img [src]="imageUrl" alt="Product Image" class="thumbnail-image">
+        </div>
+      </div>
+      <div class="cart-item-details">
+        <h2 class="cart-item-name">{{ productDetailAmount.name }}</h2>
+        <p class="cart-item-description">{{ productDetailAmount.description }}</p>
+        <div class="cart-item-quantity">
+          <span class="quantity-label">Quantity:</span>
+          <span class="quantity-value">{{ productDetailAmount.quantity }}</span>
+        </div>
+        <div class="cart-item-amount">
+          <span class="amount-label">Detail Amount:</span>
+          <span class="amount-value">{{ productDetailAmount.detailAmount }}</span>
+        </div>
+        <button class="delete-button" (click)="deleteOrderDetails(productDetailAmount)">Supprimer</button>
+      </div>
+    </div>
+  </div>
+  <div class="cart-total">
+    <h2 class="cart-total-label">Total Order Amount:</h2>
+    <p class="cart-total-amount">{{ totalOrderAmount }}</p>
+  </div>
+</div>
+<div class="cart-actions">
+  <button class="cart-action-button continue-shopping" [routerLink]="'/Products'">Continue Shopping</button>
+  <button class="cart-action-button validate-order" [routerLink]="'/payments/createPayment'">Valider la commande</button>
+</div>

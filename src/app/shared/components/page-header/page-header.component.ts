@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input, HostBinding } from '@angul
 import { MenuService } from '@core/bootstrap/menu.service';
 import { Router } from '@angular/router';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'page-header',
@@ -10,6 +11,7 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
   encapsulation: ViewEncapsulation.None,
 })
 export class PageHeaderComponent implements OnInit {
+
   @HostBinding('class') class = 'matero-page-header';
 
   @Input() title = '';
@@ -24,9 +26,11 @@ export class PageHeaderComponent implements OnInit {
   }
   private _hideBreadCrumb = false;
 
-  constructor(private router: Router, private menu: MenuService) {}
+  constructor(private router: Router, private menu: MenuService,private titleService: Title) {}
 
   ngOnInit() {
+    this.titleService.setTitle('');
+
     this.nav = Array.isArray(this.nav) ? this.nav : [];
 
     if (this.nav.length === 0) {
@@ -39,7 +43,7 @@ export class PageHeaderComponent implements OnInit {
   genBreadcrumb() {
     const routes = this.router.url.slice(1).split('/');
     this.nav = this.menu.getLevel(routes);
-    this.nav.unshift('home');
+    this.nav.unshift(this.titleService.getTitle());
   }
 
   static ngAcceptInputType_hideBreadcrumb: BooleanInput;

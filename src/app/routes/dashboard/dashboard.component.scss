@@ -1,3 +1,49 @@
 .mat-mdc-button-base {
   margin: 4px;
 }
+
+
+.top-selling-card {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-selling-card-header {
+  background-color: #2196f3; /* Couleur personnalisée pour l'en-tête */
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.top-selling-card-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff; /* Couleur du texte personnalisée pour le titre */
+}
+
+.top-selling-card-content {
+  margin-top: 16px;
+}
+
+.top-selling-card-content h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333; /* Couleur du texte personnalisée pour les titres de section */
+}
+
+.top-selling-card-content p {
+  margin-bottom: 8px;
+  color: #666; /* Couleur du texte personnalisée pour les paragraphes */
+}
+
+.top-selling-card-content p:last-child {
+  margin-bottom: 0;
+}
+.product-image {
+  width: 200px; /* Définissez la largeur souhaitée pour l'image */
+  height: auto; /* Vous pouvez ajuster la hauteur selon vos besoins */
+  object-fit: cover; /* Ajuste la façon dont l'image est redimensionnée pour s'adapter à la zone */
+  border-radius: 4px; /* Ajoute des coins arrondis à l'image si vous le souhaitez */
+}

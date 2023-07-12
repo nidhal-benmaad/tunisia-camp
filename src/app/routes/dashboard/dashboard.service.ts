@@ -147,7 +147,7 @@ export class DashboardService {
         colors: ['#FF4560'],
       },
       // colors: colors,
-      markers: {
+        markers: {
         size: 4,
         colors: ['#fff'],
         strokeColor: '#FF4560',
@@ -189,10 +189,15 @@ export class DashboardService {
   constructor(private http: HttpClient) {}
   private apiUrl =
     'http://localhost:8082/tunisia-camp/reservations/calculateCampgroundRevenueCurrentMonth';
+
+  private apiUrl2 = 'http://localhost:2022/tunisia-camp/product/top-selling';
+
   getData() {
     return ELEMENT_DATA;
   }
-
+  getTopSellingProduct() {
+    return this.http.get<any>(this.apiUrl2);
+  }
   getRevenueData() {
     return this.http.get(this.apiUrl);
   }

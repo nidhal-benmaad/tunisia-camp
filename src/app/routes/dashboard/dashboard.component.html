@@ -33,13 +33,23 @@
     </mat-card>
   </div>
   <div class="col-md-5">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Monthly Revenue By Campground</mat-card-title>
+    <mat-card *ngIf="topSellingProduct" class="top-selling-card">
+      <mat-card-header class="top-selling-card-header">
+        <mat-card-title class="top-selling-card-title">Top Selling Product</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <div id="chart2"></div>
+      <mat-card-content class="top-selling-card-content">
+        <h2>{{ topSellingProduct.name }}</h2>
+        <p>{{ topSellingProduct.description }}</p>
+        <div *ngFor="let imageUrl of topSellingProduct.imageUrls" class="product-image">
+          <img [src]="imageUrl" alt="Product Image">
+        </div>
+        <p>Price per product: {{ topSellingProduct.price }}</p>
+        <p>Quantity sold: {{ topSellingProduct.totalQuantity }}</p>
       </mat-card-content>
     </mat-card>
   </div>
+
+
+
+
 </div>

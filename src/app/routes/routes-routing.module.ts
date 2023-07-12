@@ -25,6 +25,23 @@ import {
 } from "./admin-views/affecter-promo-to-product/affecter-promo-to-product.component";
 import {ListCategorieComponent} from "./admin-views/list-categorie/list-categorie.component";
 import {AjoutCategorieComponent} from "./admin-views/ajout-categorie/ajout-categorie.component";
+import {ListProductFrontComponent} from "./client-views/list-product-front/list-product-front.component";
+import {
+  ProductDetailsComponentComponent
+} from "./client-views/product-details-component/product-details-component.component";
+import {
+  PaymentMethodFormComponentComponent
+} from "./client-views/payment-method-form-component/payment-method-form-component.component";
+import {OrderDetailsComponentComponent} from "./client-views/order-details-component/order-details-component.component";
+import {
+  DesaffectationPromoProductComponent
+} from "./admin-views/desaffectation-promo-product/desaffectation-promo-product.component";
+import {ListOrderComponent} from "./admin-views/list-order/list-order.component";
+import {ListOrderDetailsAdminService} from "./admin-views/list-order-details-admin.service";
+import {
+  ListOrderDetailsAdminComponent
+} from "./admin-views/list-order-details-admin/list-order-details-admin.component";
+
 const routes: Routes = [
   {
     path: 'admin',
@@ -39,7 +56,10 @@ const routes: Routes = [
       { path: '500', component: Error500Component },
       {path: 'reservations', component: ReservationsComponent},
       { path: 'listPromo/affecterPromoToProduct', component: AffecterPromoToProductComponent },
+      { path: 'listPromo/removeProductFromPromotion', component: DesaffectationPromoProductComponent },
       { path: 'admin/promotion/listPromo', component: ListPromoComponent },
+      { path: 'order', component: ListOrderComponent },
+      { path: 'OrderDetailsAdmin', component: ListOrderDetailsAdminComponent },
       {
         path: 'Categorie',
         component: ListCategorieComponent,
@@ -70,6 +90,7 @@ const routes: Routes = [
         component: UpdatePromoComponent,
 
       },
+
       {
         path: 'products/create',
         component: AjoutProductComponent,
@@ -117,6 +138,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
+      { path: 'Products', component: ListProductFrontComponent },
+      { path: 'product/:id', component: ProductDetailsComponentComponent },
+  { path: 'payments/createPayment', component: PaymentMethodFormComponentComponent },
+      {path: 'order/:id/orders', component: OrderDetailsComponentComponent},
     ],
   },
   {

@@ -1,0 +1,24 @@
+<div *ngIf="product" class="product-details">
+  <h3 class="product-name">{{ product.name }}</h3>
+  <p class="product-description">{{ product.description }}</p>
+  <p class="product-price" [ngStyle]="{'text-decoration': discountedPrice ? 'line-through' : 'none'}">Price: {{ product.price }}</p>
+  <p class="product-discounted-price" *ngIf="discountedPrice">Discounted Price: {{ discountedPrice }}</p>
+
+  <p class="product-quantity">
+    Quantity:
+    <select [(ngModel)]="selectedQuantity">
+      <option *ngFor="let quantity of quantities" [value]="quantity">{{ quantity }}</option>
+    </select>
+
+  </p>
+  <div class="product-images">
+    <div *ngFor="let imageUrl of product.imageUrls" class="product-image">
+      <img [src]="imageUrl" alt="Product Image">
+    </div>
+  </div>
+  <div class="cart-actions">
+
+    <a [routerLink]="['/order/1/orders']" [queryParams]="{ discountedPrice: discountedPrice }" class="product-link" (click)="addToCart(product.id)">add To Cart</a>
+
+  </div>
+</div>

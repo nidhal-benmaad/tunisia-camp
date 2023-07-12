@@ -1,0 +1,10 @@
+<h1>Supprimer un produit de la promotion</h1>
+
+<label for="promotionId">Promotion ID:</label>
+<input type="number" id="promotionId" [(ngModel)]="promotionId">
+
+<label for="productId">Product ID:</label>
+<input type="number" id="productId" [(ngModel)]="productId">
+
+<button (click)="removeProductFromPromotion()">Supprimer</button>
+<p *ngIf="isDesaffectationSuccessful">La Désaffectation a réussi.</p>

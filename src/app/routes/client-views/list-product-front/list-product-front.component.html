@@ -1,0 +1,17 @@
+<div class="product-list">
+  <div class="row">
+    <div *ngFor="let product of products" class="col-md-4">
+      <div class="product-card">
+        <div *ngFor="let imageUrl of product.imageUrls" class="product-image">
+          <img [src]="imageUrl" alt="Product Image">
+        </div>
+        <div class="product-details">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-price" [ngClass]="{'original-price': product.discountedPrice}">Price: {{ product.price }}</p>
+          <p class="product-discounted-price" *ngIf="product.discountedPrice">Discounted Price: {{ product.discountedPrice }}</p>
+          <a [queryParams]="{ discountedPrice: product.discountedPrice }" [routerLink]="['/product', product.id]" class="product-link">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

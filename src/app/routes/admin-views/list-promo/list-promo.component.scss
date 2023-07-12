@@ -28,3 +28,13 @@ button:hover {
 .action-spacing {
   margin-left: 10px; /* Adjust the spacing as needed */
 }
+.custom-date-field {
+  width: 100%;
+}
+
+.custom-date-field input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+}

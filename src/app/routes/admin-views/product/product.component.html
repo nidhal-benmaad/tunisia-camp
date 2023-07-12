@@ -1,28 +1,19 @@
+<page-header class="bg-deep-purple-500">{{ titleService }}</page-header>
+<h2>Products</h2>
+
 <div>
-  <h2>Produits</h2>
-  <button routerLink="create">Ajouter Produit</button>
-  <table class="promotions-table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let product of product">
-      <td>{{ product.name }}</td>
-      <td>{{ product.description }}</td>
-      <td>{{ product.price | date }}</td>
-      <td>{{ product.quantity | date }}</td>
-      <td>
-        <button (click)="deleteProduct(product.id)">Delete</button>
-        <span class="action-spacing"></span> <!-- Add spacing between buttons -->
-        <button [routerLink]="[product.id,'update']">Edit</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+
+  <button routerLink="create" mat-raised-button color="primary">Ajouter Produit</button><br><br>
+  <mtx-grid
+    [data]="list"
+    [columns]="columns"
+    [length]="total"
+    [loading]="isLoading"
+    [pageOnFront]="false"
+    [pageIndex]="query.page"
+    [pageSize]="query.size"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="getNextPage($event)"
+  >
+  </mtx-grid>
 </div>

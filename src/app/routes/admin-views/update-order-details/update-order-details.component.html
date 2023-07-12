@@ -1,0 +1,37 @@
+
+
+<h1 mat-dialog-title>Hi</h1>
+<div mat-dialog-content>
+  <form [formGroup]="orderForm" class="user-form">
+    <mat-form-field appearance="fill">
+      <mat-label>quantite</mat-label>
+      <input matInput type="number" formControlName="quantite" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>detailAmount</mat-label>
+      <input matInput type="number" formControlName="detailAmount" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>userId</mat-label>
+      <input matInput type="number" formControlName="userId" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>prixUnitaire</mat-label>
+      <input matInput type="number" formControlName="prixUnitaire" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>order_id</mat-label>
+      <input matInput type="number" formControlName="orderId" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>productId</mat-label>
+      <input matInput type="number" formControlName="productId" />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+  <button mat-button (click)="update()">Update</button>
+</div>
