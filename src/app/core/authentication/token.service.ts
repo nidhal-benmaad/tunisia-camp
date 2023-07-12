@@ -40,18 +40,19 @@ export class TokenService implements OnDestroy {
     return this.refresh$.pipe(share());
   }
 
-  set(token?: Token): TokenService {
+  set(token?:any): TokenService {
     console.log('SET: ', token);
 
     this.save(token);
 
     return this;
   }
-  setToken(token?: Token): void {
+  setToken(token?:any): void {
     this.save(token);
   }
 
   clear(): void {
+    this.store.clear();
     this.save();
   }
 
@@ -73,17 +74,19 @@ export class TokenService implements OnDestroy {
     this.clearRefresh();
   }
 
-  private save(token?: Token): void {
+  private save(token?: any): void {
 
     this._token = undefined;
 
     if (!token) {
+      console.log("---------- !toke -----------");
       this.store.remove(this.key);
     } else {
       const value = Object.assign({ token: '', token_type: 'Bearer' }, token, {
         exp: token.exp ? token.exp : null,
       });
       this.store.set(this.key, filterObject(value));
+      console.log("SAVE FUNCTION:------------", token, this.key);
     }
 
     this.change$.next(this.token);

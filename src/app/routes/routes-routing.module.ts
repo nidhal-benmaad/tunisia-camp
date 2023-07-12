@@ -10,7 +10,7 @@ import { RegisterComponent } from './sessions/register/register.component';
 import { Error403Component } from './sessions/403.component';
 import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
-import { authGuard } from '@core/authentication';
+import { adminAuthGuard, userAuthGuard } from '@core/authentication';
 import { ClientLayoutComponent } from '@theme/client-layout/client-layout.component';
 import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
@@ -20,8 +20,8 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [adminAuthGuard],
+    canActivateChild: [adminAuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
@@ -74,8 +74,8 @@ const routes: Routes = [
   {
     path: '',
     component: ClientLayoutComponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [userAuthGuard],
+    canActivateChild: [userAuthGuard],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },

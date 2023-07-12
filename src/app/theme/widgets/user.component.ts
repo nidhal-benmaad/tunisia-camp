@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { SettingsService } from '@core';
 import { AuthService, User } from '@core/authentication';
 import { debounceTime, tap } from 'rxjs/operators';
+import {SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-user',
   template: `
     <button class="r-full" mat-button [matMenuTriggerFor]="menu">
-      <img matButtonIcon class="avatar r-full" [src]="user.avatar" width="24" alt="avatar" />
+      <img matButtonIcon class="avatar r-full" referrerpolicy="no-referrer" [src]="photoUrl ? photoUrl : '/assets/images/user.png'" width="24" alt="avatar" />
       <span class="m-x-8">{{ user.name }}</span>
     </button>
 
@@ -41,26 +42,35 @@ import { debounceTime, tap } from 'rxjs/operators';
   ],
 })
 export class UserComponent implements OnInit {
-  user!: User;
+  user!: any;
+  photoUrl: any;
 
   constructor(
     private router: Router,
     private auth: AuthService,
     private cdr: ChangeDetectorRef,
-    private settings: SettingsService
-  ) {}
+    private settings: SettingsService,
+    private authService: SocialAuthService
+  ) {
+    this.photoUrl = localStorage.getItem('photoUrl')
+  }
 
+  // @ts-ignore
   ngOnInit(): void {
     this.auth
       .user()
       .pipe(
-        tap(user => (this.user = user)),
+        tap(user => (
+          this.user = user
+          )
+        ),
         debounceTime(10)
       )
       .subscribe(() => this.cdr.detectChanges());
   }
 
   logout() {
+    this.authService.signOut();
     this.auth.logout().subscribe(() => this.router.navigateByUrl('/auth/login'));
   }
 

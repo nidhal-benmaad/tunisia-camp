@@ -21,6 +21,17 @@ export class UserService {
   deleteUser(user: any): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/users/deleteUser`, { body: user });
   }
+  getPendingUsers(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/users/pending`);
+
+  }
+  getUserByEmail(email: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/users/getUserByEmail/${email}`);
+  }
+
+  validateUser(userId: number): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/users/validate/${userId}`, {});
+  }
 
   deleteUserById(id: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/users/deleteCId/${id}`);

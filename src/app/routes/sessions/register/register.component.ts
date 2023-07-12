@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { AuthService } from '@core';
 import { Router } from '@angular/router';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-register',
@@ -10,17 +11,31 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  public showSuccessMessage = false;
+  private toast: any;
 
-  constructor(private authService: AuthService, private router: Router , formBuilder: FormBuilder) {}
+
+  constructor(private authService: AuthService,
+              private router: Router ,
+              private formBuilder: FormBuilder,
+              private snackBar: MatSnackBar)  {}
 
   ngOnInit() {
-    this.registerForm = new FormGroup({
-      firstName: new FormControl('', Validators.required),
-      lastName: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+    // this.registerForm = new FormGroup({
+    //   firstName: new FormControl('', Validators.required),
+    //   lastName: new FormControl('', Validators.required),
+    //   phoneNumber: new FormControl('', Validators.required),
+    //   email: new FormControl('', [Validators.required, Validators.email]),
+    //   password: new FormControl('', Validators.required),
+    //   confirmPassword: new FormControl('', Validators.required)
+    // });
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     });
   }
 
@@ -36,7 +51,14 @@ export class RegisterComponent implements OnInit {
       if (firstName && lastName && email && password && phoneNumber) {
         this.authService.register(firstName, lastName, email, phoneNumber, password).subscribe(
           () => {
-            this.router.navigate(['/home']);
+            //this.showSuccessMessage = true;
+            this.snackBar.open(" Merci dattendre la validation de votre compte !", 'Fermer',
+              {
+                duration: 5000,
+                panelClass: 'error-toast',
+              })
+
+            //this.router.navigate(['/home']);
             // Inscription réussie, effectuer les actions nécessaires (redirection, notification, etc.)
           },
           (error) => {
@@ -47,8 +69,6 @@ export class RegisterComponent implements OnInit {
       } else {
         // Gérer le cas où les champs username ou password sont vides
       }
-    } else {
-      // Gérer le cas où le formulaire n'est pas valide
     }
   }
 }

@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { ReservationsComponent } from './admin-views/reservations/reservations.component';
 import { CarouselComponent } from '@shared/components/carousel/carousel.component';
 import {UsersComponent} from "./admin-views/users/users.component";
+import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -27,7 +28,7 @@ const COMPONENTS: any[] = [
 const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
-  imports: [SharedModule, RoutesRoutingModule],
+    imports: [SharedModule, RoutesRoutingModule, GoogleSigninButtonModule],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, UsersComponent],
 })
 export class RoutesModule {}

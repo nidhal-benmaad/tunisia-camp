@@ -24,6 +24,7 @@
   },
   "private": true,
   "dependencies": {
+    "@abacritt/angularx-social-login": "2.0.x",
     "@angular/animations": "~15.2.0",
     "@angular/cdk": "~15.2.0",
     "@angular/common": "~15.2.0",
@@ -44,6 +45,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "angular-in-memory-web-api": "~0.15.0",
     "apexcharts": "^3.39.0",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.41",
     "ng-matero": "^15.3.0",

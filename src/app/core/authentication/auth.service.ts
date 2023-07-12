@@ -6,6 +6,7 @@ import { LoginService } from './login.service';
 import { filterObject, isEmptyObject } from './helpers';
 import { User } from './interface';
 import {HttpClient} from "@angular/common/http";
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root',
@@ -33,8 +34,22 @@ export class AuthService {
   }
 
   check() {
-    console.log('auth.check: ', this.tokenService.valid())
     return this.tokenService.valid();
+  }
+
+  roleCheck() {
+    let token;
+    if (this.tokenService.valid()) {
+      token = this.tokenService.getBearerToken();
+      const decodedToken: any = jwt_decode(token);
+      if (decodedToken.roles){
+        localStorage.setItem('roles', decodedToken.roles);
+      }else {
+        localStorage.setItem('roles', 'USER');
+      }
+      return localStorage.getItem('roles');
+    }
+    return false;
   }
 
 
@@ -50,7 +65,10 @@ export class AuthService {
 
   logout() {
     return this.loginService.logout().pipe(
-      tap(() => this.tokenService.clear()),
+      tap(() =>
+        this.tokenService.clear()
+
+      ),
       map(() => !this.check())
     );
   }
@@ -76,7 +94,7 @@ export class AuthService {
   }
 
   register(firstName: string, lastName: string,
-           email: string, phoneNumber: number, password: string): Observable<any> {
+           email: string, phoneNumber: string, password: string ): Observable<any> {
     const user: User = { firstName, lastName, email , phoneNumber, password };
     return this.http.post<any>('http://localhost:8082/tunisia-camp/api/auth/register', user);
   }
@@ -84,9 +102,11 @@ export class AuthService {
   login(email: string, password: string, rememberMe = false) {
     return this.loginService.login(email, password, rememberMe).pipe(
       tap(token => {
+        console.log("PIIIIIIIIIIIIIIPE--------------: TOKEN", token)
         this.tokenService.set(token);
       }),      map(() => this.check())
     );
   }
+
 
 }
