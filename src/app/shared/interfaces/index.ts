@@ -66,3 +66,17 @@ export interface PageableList {
   size: number | 0;
   number: number | 0;
 }
+
+export interface CheckoutPayment {
+  name: String;
+  email: String;
+  currency: String;
+  successUrl: String | null;
+  cancelUrl: String | null;
+  amount: number | null;
+  quantity: number | null;
+  cardNumber: String | null;
+  cardExpiryMonth: number | null;
+  cardExpiryYear: number | null;
+  cardCvc: String | null;
+}

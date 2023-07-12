@@ -18,3 +18,10 @@
     display: flex;
     justify-content: center;
 }
+
+.campsite-info {
+    height: 100%;
+    /* Set the height of the container to ensure scrolling */
+    overflow-y: auto;
+    /* Enable vertical scroll */
+}

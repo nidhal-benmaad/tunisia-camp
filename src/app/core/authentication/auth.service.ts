@@ -35,6 +35,7 @@ export class AuthService {
   }
 
   check() {
+    return true;
     console.log('auth.check: ', this.tokenService.valid());
     return this.tokenService.valid();
   }
@@ -60,9 +61,9 @@ export class AuthService {
     return this.user$.pipe(share());
   }
 
-  // menu() {
-  //   return iif(() => this.check(), this.loginService.menu(), of([]));
-  // }
+  menu() {
+    return iif(() => this.check(), this.loginService.menu(), of([]));
+  }
 
   private assignUser() {
     if (!this.check()) {

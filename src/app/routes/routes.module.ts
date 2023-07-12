@@ -16,12 +16,15 @@ import { CampsitesComponent } from './client-views/campsites/campsites.component
 import { BookingComponent } from './client-views/booking/booking.component';
 import { HeaderFilterComponent } from '@shared/components/header-filter/header-filter.component';
 import { RatingComponent } from '@shared/components/rating/rating.component';
-
+import { PaymentFormComponent } from '@shared/components/payment-form/payment-form.component';
+import { NgxStripeModule } from 'ngx-stripe';
+import { ReservationListComponent } from './client-views/reservation-list/reservation-list.component';
 const COMPONENTS: any[] = [
   DashboardComponent,
   HomeComponent,
   ReservationsComponent,
   HeaderFilterComponent,
+  PaymentFormComponent,
   RatingComponent,
   UsersComponent,
   CampsitesComponent,
@@ -36,7 +39,7 @@ const COMPONENTS: any[] = [
 const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
-  imports: [SharedModule, RoutesRoutingModule],
-  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
+  imports: [SharedModule, RoutesRoutingModule, NgxStripeModule.forRoot()],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, ReservationListComponent],
 })
 export class RoutesModule {}

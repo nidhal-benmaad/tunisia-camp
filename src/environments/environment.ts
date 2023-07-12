@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: '',
+  serverUrl: 'http://localhost:8082/tunisia-camp',
   useHash: false,
 };
 

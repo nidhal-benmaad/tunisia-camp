@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { HeaderFilterComponent } from '@shared/components/header-filter/header-filter.component';
 import { campsiteList } from 'app/ngRx/selectors/campsite.selectors';
-import { setCampsites } from 'app/ngRx/actions/campsite.actions';
+import { setCampsite, setCampsites } from 'app/ngRx/actions/campsite.actions';
 
 @Component({
   selector: 'app-campsites',
@@ -87,7 +87,8 @@ export class CampsitesComponent implements OnInit {
   }
   redirectToBooking(item: any) {
     console.log('item', item);
-    this.campsiteSelectionService.setSelectedCampsite(item);
+    // this.campsiteSelectionService.setSelectedCampsite(item);
+    this.store.dispatch(setCampsite({ campsite: item }));
     this.router.navigate(['/booking']);
   }
   handlePageEvent(e: any) {
