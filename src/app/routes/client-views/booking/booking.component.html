@@ -12,7 +12,7 @@
   </mat-step>
 
   <!-- Step 2: Informations -->
-  <mat-step [editable]="informationStep.editable" [completed]="informationStep.completed">
+  <mat-step>
     <ng-template matStepLabel>Informations</ng-template>
     <mat-grid-list cols="6" gutterSize="20" rowHeight="600">
       <mat-grid-tile [colspan]="4" [rowspan]="1" style="border-right: 1px solid #ccc">
@@ -33,7 +33,7 @@
             <input
               type="email"
               matInput
-              formControlName="firstName"
+              formControlName="email"
               placeholder="Ex. pat@example.com"
             />
           </mat-form-field>
@@ -52,49 +52,81 @@
             <mat-label>Address</mat-label>
             <input matInput formControlName="address" placeholder="Address" />
           </mat-form-field>
-
+          <mat-form-field
+            appearance="outline"
+            class="input-form input-full-width"
+            style="width: 200px"
+          >
+            <mat-label>Number of guests</mat-label>
+            <input matInput type="number" [formControl]="numGuests" placeholder="ex: 3" />
+            <mat-icon matSuffix>group</mat-icon>
+          </mat-form-field>
           <!-- Add more form fields as needed -->
         </form>
       </mat-grid-tile>
 
       <mat-grid-tile [colspan]="2" [rowspan]="1">
-        <div>
+        <div class="campsite-info">
           <h3>Selected Campsite Information</h3>
           <app-carousel [images]="selectedCampsite.images"></app-carousel>
           <!-- Display information about the selected campsite here -->
-          <p>Name: {{ selectedCampsite.name }}</p>
-          <p>Rating: {{ selectedCampsite.rating }}</p>
-          <p>Description: {{ selectedCampsite.description }}</p>
-          <p>
-            De {{ formatedDate(selectedCampsite.startDateAv) }} à
+          <p style="margin: 0; font-size: large">{{ selectedCampsite.name }}</p>
+          <app-rating [rating]="selectedCampsite.rating"></app-rating>
+          <div>Description: {{ selectedCampsite.description }}</div>
+          <div>
+            De {{ formatedDate(selectedCampsite.startDateAv) }}
             {{ formatedDate(selectedCampsite.endDateAv) }}
+          </div>
+          <p style="display: flex; align-items: center">
+            <mat-icon>group</mat-icon>
+            <span style="margin-left: 5px">{{ selectedCampsite.capacity }}</span>
+            <span style="margin-left: auto; font-weight: bold"
+              >from {{ selectedCampsite.price }}€</span
+            >
+          </p>
+          <hr />
+          <h4>Total price</h4>
+          <p style="display: flex; justify-content: space-between; align-items: center">
+            <span>You</span>
+            <span>{{ selectedCampsite.price }} €</span>
+          </p>
+          <div *ngIf="numGuests.value">
+            <p
+              *ngFor="let item of guestList()"
+              style="display: flex; justify-content: space-between; align-items: center"
+            >
+              <span>Participant n°{{ item }}</span>
+              <span> + {{ selectedCampsite.price }} €</span>
+            </p>
+          </div>
+          <hr />
+          <p style="display: flex; justify-content: end; align-items: center">
+            Total : {{ calculateTotal() }}
           </p>
           <!-- Add more campsite information as needed -->
-          <button mat-raised-button color="primary" (click)="handleReservation(selectedCampsite)">
+          <!-- <button mat-raised-button color="primary" (click)="handleReservation(selectedCampsite)">
             Réserver
+          </button> -->
+          <button
+            mat-flat-button
+            color="primary"
+            matStepperNext
+            [disabled]="!isInformationStepValid()"
+            (click)="handleReservation()"
+          >
+            Passer au paiement
           </button>
+          <p style="font-size: smaller; color: #ccc">* All fields are required</p>
         </div>
       </mat-grid-tile>
     </mat-grid-list>
-    <mat-grid-tile-footer>
-      <div class="footer-button-container">
-        <button mat-button matStepperNext color="primary">Passer au paiement</button>
-      </div>
-    </mat-grid-tile-footer>
   </mat-step>
-
   <!-- Step 3: Paiement -->
-  <mat-step [completed]="true">
+  <mat-step [editable]="!isInformationStepValid()" [completed]="!isInformationStepValid()">
     <ng-template matStepLabel>Paiement</ng-template>
     <!-- Add form fields and validation for the payment step -->
     <ng-container *ngIf="bookingForm">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title> This is the expansion title </mat-panel-title>
-          <mat-panel-description> This is a summary of the content </mat-panel-description>
-        </mat-expansion-panel-header>
-        <p>This is the primary content of the panel.</p>
-      </mat-expansion-panel>
+      <app-payment-form [totalAmount]="totalPrice"></app-payment-form>
       <button mat-button matStepperPrevious>Previous</button>
     </ng-container>
   </mat-step>

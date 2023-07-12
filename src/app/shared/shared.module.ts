@@ -23,7 +23,8 @@ import { ErrorCodeComponent } from './components/error-code/error-code.component
 import { DisableControlDirective } from './directives/disable-control.directive';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { ToObservablePipe } from './pipes/to-observable.pipe';
-import { PaymentStepComponent } from './components/payment-step/payment-step.component';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 // import { CarouselComponent } from './components/carousel/carousel.component';
 
 const MODULES: any[] = [
@@ -51,12 +52,6 @@ const PIPES: any[] = [SafeUrlPipe, ToObservablePipe];
 @NgModule({
   imports: [...MODULES],
   exports: [...MODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
-  declarations: [
-    ...COMPONENTS,
-    ...COMPONENTS_DYNAMIC,
-    ...DIRECTIVES,
-    ...PIPES,
-    PaymentStepComponent,
-  ],
+  declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC, ...DIRECTIVES, ...PIPES, DialogComponent],
 })
 export class SharedModule {}

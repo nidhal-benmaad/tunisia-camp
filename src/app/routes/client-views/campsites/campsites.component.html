@@ -46,15 +46,12 @@
           <div style="padding: 20px; width: 100%">
             <mat-card-title>{{ item.name }}</mat-card-title>
             <app-rating [rating]="item.rating"></app-rating>
-            <!-- <mat-card-subtitle>Rating: {{ item.rating }}</mat-card-subtitle> -->
             <p>{{ item.description }}</p>
-            <p>
-              De {{ formatedDate(item.startDateAv) }} à
-              {{ formatedDate(item.endDateAv) }}
-            </p>
+            <p>De {{ formatedDate(item.startDateAv) }} à {{ formatedDate(item.endDateAv) }}</p>
             <div style="display: flex; align-items: center">
               <mat-icon>group</mat-icon>
               <span style="margin-left: 5px">{{ item.capacity }}</span>
+              <span style="margin-left: auto; font-weight: bold">{{ item.price }}€</span>
             </div>
             <mat-card-actions>
               <button mat-raised-button color="primary" class="" (click)="redirectToBooking(item)">

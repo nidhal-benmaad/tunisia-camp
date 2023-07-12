@@ -20,6 +20,9 @@ export class ReservationService {
   getList(params: any): Observable<RepoSearchList> {
     return this.http.get<RepoSearchList>(this.apiUrl, { params });
   }
+  getByUserId(params: any) {
+    return this.http.get(`${this.apiUrl}/byUserId`, { params });
+  }
   addReservation(payload: any): Observable<IReservation> {
     return this.http.post<IReservation>(`${this.apiUrl}/create`, payload);
   }

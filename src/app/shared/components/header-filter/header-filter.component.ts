@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { campsiteService } from '@shared/services';
 import { setCampsites } from 'app/ngRx/actions/campsite.actions';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { setFilter } from 'app/ngRx/actions/shared.actions';
 import * as moment from 'moment';
 
 export interface CampsiteFilter {
@@ -19,7 +19,6 @@ export interface CampsiteFilter {
 })
 export class HeaderFilterComponent implements OnInit {
   filter: CampsiteFilter;
-
   constructor(private campsiteService: campsiteService, private store: Store) {
     this.filter = {
       startDate: null,
@@ -35,6 +34,7 @@ export class HeaderFilterComponent implements OnInit {
     return moment(timestamp).format('YYYY-MM-DD');
   }
   search() {
+    this.store.dispatch(setFilter({ filter: this.filter }));
     this.campsiteService
       .getCampsitesByDates({
         ...this.filter,

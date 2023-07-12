@@ -36,6 +36,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { formatedDate } from '@shared/utils/functions';
 import { campsiteReducer } from './ngRx/reducers/campsite.reducer';
+import { NgxStripeModule } from 'ngx-stripe';
+import { reservationReducer } from './ngRx/reducers/reservation.reducer';
+import { paymentReducer } from './ngRx/reducers/payment.reducer';
+import { sharedReducer } from './ngRx/reducers/shared.reducer';
+
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,8 +50,17 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
   declarations: [AppComponent],
   imports: [
     // Configure state persistence
+    NgxStripeModule.forRoot(
+      'pk_test_51NCPvQE1zTbpE1XrstSYo605AosZ3Ex16fbL3L4Uw0rRdbuz891xFpbX1iO6cRc62LdWDJSFwFt9hjl3CNANJDP4001FSThYst'
+    ),
     StoreModule.forRoot(
-      { campground: camgroundReducer, campsite: campsiteReducer },
+      {
+        campground: camgroundReducer,
+        campsite: campsiteReducer,
+        reservation: reservationReducer,
+        payment: paymentReducer,
+        shared: sharedReducer,
+      },
       {
         metaReducers: [localStorageSyncReducer],
       }
@@ -92,5 +106,5 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
 export class AppModule {}
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({ keys: ['campground'], rehydrate: true })(reducer);
+  return localStorageSync({ keys: ['campground', 'campsite'], rehydrate: true })(reducer);
 }
