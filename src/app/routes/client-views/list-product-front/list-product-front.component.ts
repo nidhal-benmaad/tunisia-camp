@@ -34,6 +34,11 @@ export class ListProductFrontComponent implements OnInit {
     const discountedPrice = this.route.snapshot.queryParamMap.get('discountedPrice');
 
   }
+  // Function to navigate to the cart page
+  goToCartPage() {
+    // Navigate to the cart page
+    this.router.navigate(['/order/1/orders']); // Adjust the route according to your application's routes
+  }
 
   getProductsAfterPromotion(): void {
     this.productService.getProductsAfterPromotion().subscribe(

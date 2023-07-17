@@ -19,8 +19,10 @@ import {UpdateCategoryComponent} from "../update-category/update-category.compon
 export class ListCategorieComponent  implements OnInit {
 
   columns: MtxGridColumn[] = [
-    { header: 'Description', field: 'description' },
+    { header: 'id', field: 'id' },
     { header: 'Name', field: 'name' },
+    { header: 'Description', field: 'description' },
+
 
     {
       header: this.translate.stream('table_kitchen_sink.operation'),

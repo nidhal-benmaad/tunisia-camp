@@ -1,24 +1,30 @@
+<<mat-toolbar color="primary">
+  <span class="app-title">My Shopping Cart</span>
+  <span class="cart-icon" (click)="goToCartPage()">
+    <mat-icon>shopping_cart</mat-icon>
+  </span>
+</mat-toolbar>>
 <div *ngIf="product" class="product-details">
   <h3 class="product-name">{{ product.name }}</h3>
   <p class="product-description">{{ product.description }}</p>
-  <p class="product-price" [ngStyle]="{'text-decoration': discountedPrice ? 'line-through' : 'none'}">Price: {{ product.price }}</p>
-  <p class="product-discounted-price" *ngIf="discountedPrice">Discounted Price: {{ discountedPrice }}</p>
+  <p class="product-discounted-price" *ngIf="discountedPrice" class="discounted-price">Discounted Price: {{ discountedPrice }} Dt</p>
+  <p class="product-price" [ngStyle]="{'text-decoration': discountedPrice ? 'line-through' : 'none'}">Price: {{ product.price }} Dt</p>
 
   <p class="product-quantity">
     Quantity:
-    <select [(ngModel)]="selectedQuantity">
-      <option *ngFor="let quantity of quantities" [value]="quantity">{{ quantity }}</option>
-    </select>
-
+    <input type="number" [(ngModel)]="selectedQuantity" class="quantity-input">
   </p>
+
   <div class="product-images">
     <div *ngFor="let imageUrl of product.imageUrls" class="product-image">
       <img [src]="imageUrl" alt="Product Image">
     </div>
   </div>
+
   <div class="cart-actions">
-
-    <a [routerLink]="['/order/1/orders']" [queryParams]="{ discountedPrice: discountedPrice }" class="product-link" (click)="addToCart(product.id)">add To Cart</a>
-
+    <div class="button-group">
+      <button [routerLink]="['/order/1/orders']" [queryParams]="{ discountedPrice: discountedPrice }" class="add-to-cart-button" (click)="addToCart(product.id)">Add to Cart</button>
+      <button class="add-to-cart-button" [routerLink]="'/Products'">Continue Shopping</button>
+    </div>
   </div>
 </div>

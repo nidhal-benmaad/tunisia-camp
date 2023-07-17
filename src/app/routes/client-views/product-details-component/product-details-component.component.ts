@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from "../../../model/Product";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../../admin-views/product.service";
 import {ProductDTO} from "../../../model/ProductDTO";
 import {ProductFrontServiceService} from "../list-product-front/product-front-service.service";
@@ -25,7 +25,7 @@ export class ProductDetailsComponentComponent implements OnInit{
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   private userId: number;
-  constructor(private authService: AuthService,private route: ActivatedRoute, private productService: ProductFrontServiceService) {}
+  constructor(private authService: AuthService,private route: ActivatedRoute, private productService: ProductFrontServiceService,private router:Router) {}
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
    // @ts-ignore
   discountedPrice = this.route.snapshot.queryParamMap.get('discountedPrice');
@@ -63,7 +63,9 @@ export class ProductDetailsComponentComponent implements OnInit{
     );
   }
 
-// Dans votre composant TypeScript correspondant à la page
 
-
+  goToCartPage() {
+    // Navigate to the cart page
+    this.router.navigate(['/order/1/orders']); // Adjust the route according to your application's routes
+  }
 }

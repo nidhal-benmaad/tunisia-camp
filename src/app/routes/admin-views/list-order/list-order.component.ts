@@ -32,12 +32,7 @@ export class ListOrderComponent implements OnInit{
       pinned: 'right',
       type: 'button',
       buttons: [
-        {
-          type: 'icon',
-          icon: 'edit',
-          tooltip: this.translate.stream('table_kitchen_sink.edit'),
-          click: record => this.edit(record),
-        },
+
         {
           color: 'warn',
           icon: 'delete',
@@ -103,19 +98,6 @@ export class ListOrderComponent implements OnInit{
       );
   }
 
-  edit(value: any) {
-    const dialogRef = this.dialog.originalOpen(UpdateOrderDetailsComponent, {
-      width: '600px',
-      data: { record: value },
-    });
-
-    dialogRef.afterClosed().subscribe(() => console.log('The dialog was closed'));
-    this.orderService
-      .findAllOrder({ page: 0, size: 3 })
-      .subscribe((order) => {
-        this.order = order;
-      });
-  }
 
   delete(value: any) {
     this.orderService.deleteOrder(value.id).subscribe(() => {

@@ -1,3 +1,9 @@
+<mat-toolbar color="primary">
+  <span class="app-title">My Cart</span>
+  <span class="cart-icon" (click)="goToCartPage()">
+    <mat-icon>shopping_cart</mat-icon>
+  </span>
+</mat-toolbar>
 <div class="product-list">
   <div class="row">
     <div *ngFor="let product of products" class="col-md-4">
@@ -9,6 +15,7 @@
           <h3 class="product-name">{{ product.name }}</h3>
           <p class="product-price" [ngClass]="{'original-price': product.discountedPrice}">Price: {{ product.price }}</p>
           <p class="product-discounted-price" *ngIf="product.discountedPrice">Discounted Price: {{ product.discountedPrice }}</p>
+          <p class="product-message" *ngIf="product.message">{{ product.message }}</p>
           <a [queryParams]="{ discountedPrice: product.discountedPrice }" [routerLink]="['/product', product.id]" class="product-link">View Details</a>
         </div>
       </div>

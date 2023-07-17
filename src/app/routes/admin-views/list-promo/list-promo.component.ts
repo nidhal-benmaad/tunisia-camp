@@ -19,6 +19,7 @@ export class ListPromoComponent implements OnInit {
   endDate!: string;
 
   columns: MtxGridColumn[] = [
+    { header: 'id', field: 'id' },
     { header: 'Code', field: 'code' },
     { header: 'Discount', field: 'discount' },
     { header: 'start date', field: 'startDate', type: 'date' },

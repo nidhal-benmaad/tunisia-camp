@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {OrderDetail, OrderDetails} from "../../../model/OrderDetails";
 import { OrderDetailsServiceService } from "./order-details-service.service";
 import {ProductDTO} from "../../../model/ProductDTO";
@@ -20,7 +20,8 @@ export class OrderDetailsComponentComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private orderDetailsService: OrderDetailsServiceService
+    private orderDetailsService: OrderDetailsServiceService,
+    private router: Router,
   ) {
   }
 
@@ -83,5 +84,10 @@ export class OrderDetailsComponentComponent implements OnInit {
         // Gérer l'erreur ici
       }
     );
+  }
+
+  goToCartPage() {
+    // Navigate to the cart page
+    this.router.navigate(['/order/1/orders']); // Adjust the route according to your application's routes
   }
 }

@@ -33,12 +33,7 @@ export class ListOrderDetailsAdminComponent implements OnInit{
       pinned: 'right',
       type: 'button',
       buttons: [
-        {
-          type: 'icon',
-          icon: 'edit',
-          tooltip: this.translate.stream('table_kitchen_sink.edit'),
-          click: record => this.edit(record),
-        },
+
         {
           color: 'warn',
           icon: 'delete',

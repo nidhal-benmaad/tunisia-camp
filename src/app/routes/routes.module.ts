@@ -39,6 +39,8 @@ import {
   ListOrderDetailsAdminComponent
 } from "./admin-views/list-order-details-admin/list-order-details-admin.component";
 import {UpdateOrderDetailsComponent} from "./admin-views/update-order-details/update-order-details.component";
+import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -69,7 +71,8 @@ const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule,CommonModule,
-  [FormsModule]
+  [FormsModule],  MatCardModule,
+    MatIconModule,
 
     ],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],

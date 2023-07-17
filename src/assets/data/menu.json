@@ -17,19 +17,31 @@
     },
     {
       "route": "admin/products",
-      "name": "Produits",
+      "name": "Products",
       "type": "link",
       "icon": "credit_card"
     },
     {
       "route": "admin/Categorie",
-      "name": "Categories",
+      "name": "Category",
       "type": "link",
       "icon": "credit_card"
     },
     {
       "route": "admin/listPromo",
       "name": "Promotions",
+      "type": "link",
+      "icon": "credit_card"
+    },
+    {
+      "route": "admin/order",
+      "name": "Order",
+      "type": "link",
+      "icon": "credit_card"
+    },
+    {
+      "route": "admin/OrderDetailsAdmin",
+      "name": "Order Details",
       "type": "link",
       "icon": "credit_card"
     },

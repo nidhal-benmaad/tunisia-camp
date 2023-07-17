@@ -1,32 +1,41 @@
+<mat-toolbar color="primary">
+  <span class="app-title">My Cart</span>
+  <span class="cart-icon" (click)="goToCartPage()">
+    <mat-icon>shopping_cart</mat-icon>
+  </span>
+</mat-toolbar>
 <div class="cart-container">
+  <div class="cart-header">
+    <h2 class="cart-title">Mon Panier</h2>
+  </div>
   <div class="cart-items">
-    <div *ngFor="let productDetailAmount of productDetailAmounts" class="cart-item">
-      <div class="cart-item-image">
-        <div *ngFor="let imageUrl of productDetailAmount.imageUrls" class="product-image">
-          <img [src]="imageUrl" alt="Product Image" class="thumbnail-image">
+    <!-- Boucle sur les articles du panier -->
+    <div class="cart-item" *ngFor="let productDetailAmount of productDetailAmounts">
+      <div class="item-image">
+        <img [src]="productDetailAmount.imageUrls[0]" alt="Product Image">
+      </div>
+      <div class="item-details">
+        <h3 class="item-name">{{ productDetailAmount.name }}</h3>
+        <p class="item-price">Prix Total: {{ productDetailAmount.detailAmount }} Dt</p>
+        <div class="item-quantity">
+          <span class="quantity-label">Quantité :</span>
+          <input type="number" class="quantity-input" [(ngModel)]="productDetailAmount.quantity">
         </div>
       </div>
-      <div class="cart-item-details">
-        <h2 class="cart-item-name">{{ productDetailAmount.name }}</h2>
-        <p class="cart-item-description">{{ productDetailAmount.description }}</p>
-        <div class="cart-item-quantity">
-          <span class="quantity-label">Quantity:</span>
-          <span class="quantity-value">{{ productDetailAmount.quantity }}</span>
-        </div>
-        <div class="cart-item-amount">
-          <span class="amount-label">Detail Amount:</span>
-          <span class="amount-value">{{ productDetailAmount.detailAmount }}</span>
-        </div>
-        <button class="delete-button" (click)="deleteOrderDetails(productDetailAmount)">Supprimer</button>
+      <div class="item-actions">
+        <button class="remove-button" (click)="deleteOrderDetails(productDetailAmount)">Supprimer</button>
       </div>
     </div>
+    <!-- Fin de la boucle -->
   </div>
-  <div class="cart-total">
-    <h2 class="cart-total-label">Total Order Amount:</h2>
-    <p class="cart-total-amount">{{ totalOrderAmount }}</p>
+  <div class="cart-footer">
+    <div class="total-amount">
+      <h2 class="amount-label">Montant total :</h2>
+      <p class="amount-value">{{ totalOrderAmount }} Dt</p>
+    </div>
+    <div class="cart-actions">
+      <button class="continue-shopping-button" [routerLink]="'/Products'">Continuer vos achats</button>
+      <button class="checkout-button" [routerLink]="'/payments/createPayment'">Valider la commande</button>
+    </div>
   </div>
-</div>
-<div class="cart-actions">
-  <button class="cart-action-button continue-shopping" [routerLink]="'/Products'">Continue Shopping</button>
-  <button class="cart-action-button validate-order" [routerLink]="'/payments/createPayment'">Valider la commande</button>
 </div>

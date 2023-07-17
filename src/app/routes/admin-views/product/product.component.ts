@@ -15,8 +15,9 @@ import {Title} from "@angular/platform-browser";
 export class ProductComponent implements OnInit {
 
   columns: MtxGridColumn[] = [
-    { header: 'Description', field: 'description' },
+    { header: 'id', field: 'id' },
     { header: 'Name', field: 'name' },
+    { header: 'Description', field: 'description' },
     { header: 'price', field: 'price' },
     { header: 'quantity', field: 'quantity'},
 
